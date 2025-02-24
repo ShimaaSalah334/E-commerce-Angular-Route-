@@ -1,0 +1,81 @@
+<section class="details pt-9">
+  <div class="container mx-auto flex gap-10">
+    <div class="product-img w-6/12">
+      <img
+        [src]="productData.imageCover"
+        class="w-11/12 h-2/3 object-cover mx-auto rounded-2xl"
+        alt=""
+        #coverImage
+      />
+      <div class="images-slider mt-6">
+        <owl-carousel-o [options]="customOptions">
+          @for (image of productData.images; track $index) {
+          <ng-template carouselSlide>
+            <img
+              [src]="image"
+              class="w-36 h-36 object-cover rounded-2xl pointer-events-auto z-50 cursor-pointer"
+              alt=""
+              (click)="getatrr($event)"
+            />
+          </ng-template>
+          }
+        </owl-carousel-o>
+      </div>
+    </div>
+    <div class="product-data w-6/12 px-3">
+      <div class="brand mb-1">
+        <p class="text-gray-450 font-medium">
+          {{ productData.brand?.name }}
+        </p>
+      </div>
+      <div class="title mb-3.5">
+        <p class="text-black font-semibold text-2xl">
+          {{ productData.title }}
+        </p>
+      </div>
+      <div class="description mb-3">
+        <p class="text-gray-450">{{ productData.description }}.</p>
+      </div>
+      <div class="flex justify-between mb-6">
+        <div class="price">
+          <p class="text-black font-bold text-xl">
+            <span class="font-normal me-2">Price : </span
+            >{{ productData.price | currency : "EGP " }}
+          </p>
+        </div>
+        <div class="rating">
+          <p class="text-gray-450 font-semibold">
+            {{ productData.ratingsAverage
+            }}<i class="fa-solid fa-star ms-2 text-primary-500"></i>
+          </p>
+        </div>
+      </div>
+      <div class="quantity mb-6">
+        <form class="max-w-sm">
+          <div class="flex items-center relative">
+            <label
+              for="quantity"
+              class="py-2.5 px-4 text-sm font-medium text-center text-gray-500 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+            >
+              Quantity
+            </label>
+            <input
+              type="number"
+              class="bg-gray-50 border border-gray-300 text-black text-sm rounded-e-lg border-s-gray-100 dark:border-s-gray-700 focus:border-gray-300 border-s-0 block w-1/2 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+              min="0"
+              [max]="productData.quantity"
+              value="0"
+            />
+          </div>
+        </form>
+      </div>
+      <div class="add-to-cart">
+        <button
+          class="block text-black-01 disabled:bg-primary-400 bg-primary-400 hover:bg-primary-500 transition-all duration-300 font-medium px-5 py-2.5"
+        >
+          <i class="fa-solid fa-cart-plus me-2"></i> Add to cart
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

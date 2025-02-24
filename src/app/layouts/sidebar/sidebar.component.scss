@@ -1,0 +1,47 @@
+.active i {
+  color: #ffc831;
+}
+.active span {
+  color: #212b36;
+}
+
+.active {
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-style: solid;
+    border-width: 20px 0px 20px 10px;
+    border-color: transparent transparent transparent #ffc831;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+  }
+}
+
+.text-gray-900 {
+  color: #212b36;
+  i {
+    color: #ffc831;
+  }
+}
+#accordion-open-heading-1 .bg-gray-100 {
+  background-color: #eff2f5;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-style: solid;
+    border-width: 20px 0px 20px 10px;
+    border-color: transparent transparent transparent #ffc831;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+  }
+}

@@ -1,0 +1,135 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.cat-slider {
+  /* Global styles for Owl Carousel */
+  .owl-stage-outer {
+    padding: 10px 0px;
+  }
+  /* Adjust stage to handle custom widths */
+  .owl-stage {
+    display: flex;
+    justify-content: space-between;
+  }
+  /* Adjust margin between items */
+  .owl-item {
+    width: auto !important;
+  }
+
+  .owl-theme {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    .owl-nav {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 0;
+      position: absolute;
+      pointer-events: none;
+      .disabled {
+        opacity: 0;
+      }
+    }
+    .owl-nav [class*="owl-"] {
+      background-color: #f3f5f7;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+      pointer-events: auto;
+      transition: all 0.3s ease;
+      &:hover {
+        background-color: #919eab;
+      }
+      &:hover i {
+        color: white;
+      }
+    }
+  }
+  .owl-carousel .owl-nav .owl-next {
+    margin-right: -10px;
+  }
+  .owl-carousel .owl-nav .owl-prev {
+    margin-left: -10px;
+  }
+}
+
+.signup,
+.login {
+  .owl-theme {
+    position: relative;
+    .owl-item {
+      position: relative;
+    }
+    .owl-dots {
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      transform: translatex(-50%);
+      -webkit-transform: translatex(-50%);
+      -moz-transform: translatex(-50%);
+      -ms-transform: translatex(-50%);
+      -o-transform: translatex(-50%);
+      .owl-dot.active {
+        span {
+          background-color: #ffc831;
+        }
+      }
+      .owl-dot {
+        span {
+          background-color: #ffda64;
+          &:hover {
+            background-color: #ffc831;
+          }
+        }
+      }
+    }
+  }
+}
+.images-slider {
+  .owl-stage {
+    padding-right: 0px;
+  }
+  .owl-theme {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 0px 40px;
+    .owl-nav {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      position: absolute;
+      pointer-events: none;
+      .disabled {
+        opacity: 0;
+      }
+      .owl-next {
+        margin-right: 40px;
+      }
+      .owl-prev {
+        margin-left: -20px;
+      }
+
+      [class*="owl-"] {
+        background-color: transparent;
+        font-size: 20px;
+        pointer-events: auto;
+        .disabled {
+          opacity: 0;
+        }
+      }
+    }
+  }
+}
