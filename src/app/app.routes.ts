@@ -27,6 +27,15 @@ export const routes: Routes = [
           ),
         title: 'register',
       },
+      {
+        path: 'forgetPassword',
+        canActivate: [loggedGuard],
+        loadComponent: () =>
+          import('./pages/forget-password/forget-password.component').then(
+            (c) => c.ForgetPasswordComponent
+          ),
+        title: 'forgetPassword',
+      },
     ],
   },
   {

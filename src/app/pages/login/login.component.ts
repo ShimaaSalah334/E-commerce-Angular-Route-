@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import {
   AbstractControl,
   FormControl,
@@ -8,10 +7,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../core/services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { CarouselComponent } from "../../shared/components/ui/carousel/carousel.component";
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, CarouselModule],
+  imports: [ReactiveFormsModule, RouterLink, CarouselComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -24,31 +24,7 @@ export class LoginComponent {
     email: new FormControl(null, [Validators.required]),
     password: new FormControl(null, [Validators.required]),
   });
-  customOptions: OwlOptions = {
-    loop: true,
-    mouseDrag: false,
-    touchDrag: false,
-    pullDrag: false,
-    autoplay: true,
-    dots: true,
-    navSpeed: 700,
-    navText: ['', ''],
-    responsive: {
-      0: {
-        items: 1,
-      },
-      400: {
-        items: 1,
-      },
-      740: {
-        items: 1,
-      },
-      940: {
-        items: 1,
-      },
-    },
-    nav: false,
-  };
+
 
   submit() {
     if (this.loginForm.valid) {

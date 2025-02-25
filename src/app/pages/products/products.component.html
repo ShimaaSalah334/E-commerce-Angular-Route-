@@ -1,1 +1,84 @@
-<p>products works!</p>
+<section class="home pt-5">
+  <div class="container">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      @for (product of productsList; track $index) {
+      <div
+        class="w-full shadow-sm rounded-lg border border-gray-150 relative dark:bg-gray-800 dark:border-gray-700 pb-2"
+      >
+        <a [routerLink]="['/details', product._id]">
+          <div class="card-img rounded-lg">
+            <img
+              class="rounded-lg w-full object-cover h-96"
+              [src]="product.imageCover"
+              alt="product image"
+            />
+          </div>
+          <div class="card-body flex px-3 py-4">
+            <div class="avatar w-2/12">
+              <img
+                class="w-8 h-8 rounded-full"
+                src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                alt="Rounded avatar"
+              />
+            </div>
+            <div class="info w-10/12">
+              <div class="title mb-1">
+                <h5
+                  class="text-sm font-semibold text-gray-850 dark:text-white line-clamp-1"
+                >
+                  {{ product.title }}
+                </h5>
+              </div>
+              <div class="description mb-4">
+                <p class="text-gray-650 text-sm dark:text-white line-clamp-1">
+                  {{ product.description }}
+                </p>
+              </div>
+              <div class="price mb-2">
+                <p class="text-primary-500 font-semibold text-sm">
+                  {{ product.price | currency : "EGP " }}
+                </p>
+              </div>
+              <div class="flex items-center space-x-3 rtl:space-x-reverse">
+                <div class="sales">
+                  <p class="text-gray-650 text-xs">
+                    {{
+                      product.sold >= 1000
+                        ? product.sold.toLocaleString()
+                        : product.sold
+                    }}
+                    sales
+                  </p>
+                </div>
+                <div class="ratings flex items-center space-x-2">
+                  <svg
+                    class="w-4 h-4 text-primary-500"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 22 20"
+                  >
+                    <path
+                      d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
+                    />
+                  </svg>
+                  <span class="text-gray-650 text-xs dark:text-blue-800 ms-3"
+                    >{{ product.ratingsAverage }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+        <div class="add-to-cart absolute end-4 bottom-6">
+          <button
+            class="text-gray-650 bg-gray-150 w-9 h-9 rounded-full flex items-center justify-center"
+          >
+            <i class="fa-solid fa-cart-plus"></i>
+          </button>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>
