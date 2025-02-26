@@ -26,4 +26,13 @@ export class AuthService {
     const token = localStorage.getItem('userToken') as string;
     this.userData = jwtDecode(token);
   }
+  forgetPassword(data: any): Observable<any> {
+    return this.httpClient.post(`${this.baseUrl}/api/v1/auth/forgotPasswords`, data)
+  }
+  confirmCode(data: any): Observable<any> {
+    return this.httpClient.post(`${this.baseUrl}/api/v1/auth/verifyResetCode`, data)
+  }
+  resetPassword(data: any): Observable<any> {
+    return this.httpClient.put(`${this.baseUrl}/api/v1/auth/resetPassword`, data)
+  }
 }
