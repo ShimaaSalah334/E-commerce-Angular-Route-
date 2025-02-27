@@ -97,7 +97,8 @@
         </a>
         <div class="add-to-cart absolute end-4 bottom-6">
           <button
-            class="text-gray-650 bg-gray-150 w-9 h-9 rounded-full flex items-center justify-center"
+            class="text-gray-650 hover:text-primary-500 hover:scale-125 transition-all duration-300 bg-gray-150 w-9 h-9 rounded-full flex items-center justify-center"
+            (click)="addToCart(product._id)"
           >
             <i class="fa-solid fa-cart-plus"></i>
           </button>

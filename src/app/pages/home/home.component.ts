@@ -6,6 +6,7 @@ import { ICategory } from '../../core/interfaces/icategory';
 import { ProductsService } from '../../core/services/products.service';
 import { CategoriesService } from '../../core/services/categories.service';
 import { CurrencyPipe } from '@angular/common';
+import { CartService } from '../../core/services/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -47,6 +48,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private products: ProductsService,
     private categories: CategoriesService,
+    private cart: CartService,
     private activatedRoute: ActivatedRoute
   ) { }
   ngOnInit(): void {
@@ -88,5 +90,18 @@ export class HomeComponent implements OnInit {
           .subscribe((res) => { });
       }
     });
+  }
+
+  addToCart(id: string) {
+    this.cart.addToCart(id).subscribe({
+      next: (res) => {
+        console.log(res);
+
+      },
+      error: (err) => {
+        console.log(err);
+
+      },
+    })
   }
 }
