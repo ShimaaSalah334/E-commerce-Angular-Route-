@@ -30,5 +30,33 @@ export class CartService {
       })
 
   }
+  removeCartItem(productId: string): Observable<any> {
+    return this.httpClient.delete(`${this.baseUrl}/api/v1/cart/${productId}`,
+      {
+        headers: {
+          token: this.userToken
+        }
+      })
+  }
 
+  udateProductQuantity(id: string, count: number): Observable<any> {
+    return this.httpClient.put(`${this.baseUrl}/api/v1/cart/${id}`, {
+      "count": count
+    },
+      {
+        headers: {
+          token: this.userToken
+        }
+      })
+
+  }
+  clearCart(): Observable<any> {
+    return this.httpClient.delete(`${this.baseUrl}/api/v1/cart`,
+      {
+        headers: {
+          token: this.userToken
+        }
+      })
+
+  }
 }

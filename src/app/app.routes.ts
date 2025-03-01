@@ -76,6 +76,13 @@ export const routes: Routes = [
         title: 'cart',
       },
       {
+        path: 'checkout/:id',
+        canActivate: [authGuard],
+        loadComponent: () =>
+          import('./pages/check-out/check-out.component').then((c) => c.CheckOutComponent),
+        title: 'checkout',
+      },
+      {
         path: 'brands',
         canActivate: [authGuard],
         loadComponent: () =>
@@ -91,7 +98,7 @@ export const routes: Routes = [
           import('./pages/wish-list/wish-list.component').then(
             (c) => c.WishListComponent
           ),
-        title: 'favourite',
+        title: 'wishList',
       },
       {
         path: 'cat/:catname',
