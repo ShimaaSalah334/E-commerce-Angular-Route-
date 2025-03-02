@@ -9,8 +9,9 @@
       </div>
 
       <p class="bg-primary-500/60 py-0.5 px-4 rounded-xl">
-        @if(items >=2 || items === 0){
-        {{ items }} items } @else{ {{ items }} item }
+        @if(numberOfCartItems() >=2 || numberOfCartItems() === 0){
+        {{ numberOfCartItems() }} items } @else{ {{ numberOfCartItems() }} item
+        }
       </p>
     </div>
     @if (cartData.totalCartPrice>0) {

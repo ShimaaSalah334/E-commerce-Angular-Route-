@@ -8,16 +8,17 @@ import { Observable } from 'rxjs';
 })
 export class OrdersService {
   baseUrl: string = environment.baseUrl;
-  userToken = localStorage.getItem('userToken') as string
   constructor(private httpClient: HttpClient) { }
   onlinePayment(cartId: string, formData: any): Observable<any> {
-    return this.httpClient.post(`${this.baseUrl}/api/v1/orders/checkout-session/${cartId}?url=http://localhost:3000`, {
+    return this.httpClient.post(`${this.baseUrl}/api/v1/orders/checkout-session/${cartId}?url=http://localhost:4200`, {
       "shippingAddress": formData
     },
-      {
-        headers: {
-          token: this.userToken
-        }
-      })
+    )
+  }
+  cashPayment(cartId: string, formData: any): Observable<any> {
+    return this.httpClient.post(`${this.baseUrl}/api/v1/orders/${cartId}`, {
+      "shippingAddress": formData
+    },
+    )
   }
 }

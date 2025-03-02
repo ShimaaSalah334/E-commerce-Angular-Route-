@@ -7,6 +7,7 @@ import { ProductsService } from '../../core/services/products.service';
 import { CategoriesService } from '../../core/services/categories.service';
 import { CurrencyPipe } from '@angular/common';
 import { CartService } from '../../core/services/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,7 @@ import { CartService } from '../../core/services/cart.service';
 export class HomeComponent implements OnInit {
   productsList: IProduct[] = [];
   categoriesList: ICategory[] = [];
+  numberOfCartItems: number = 0
   customOptions: OwlOptions = {
     loop: false,
     mouseDrag: false,
@@ -49,7 +51,8 @@ export class HomeComponent implements OnInit {
     private products: ProductsService,
     private categories: CategoriesService,
     private cart: CartService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private toastr: ToastrService
   ) { }
   ngOnInit(): void {
     this.displayProducts();
@@ -96,12 +99,16 @@ export class HomeComponent implements OnInit {
     this.cart.addToCart(id).subscribe({
       next: (res) => {
         console.log(res);
-
+        this.showSuccess(res.message);
+        this.cart.cartItems.set(res.numOfCartItems)
       },
       error: (err) => {
         console.log(err);
 
       },
     })
+  }
+  showSuccess(message: string) {
+    this.toastr.success(message, 'Shopify');
   }
 }

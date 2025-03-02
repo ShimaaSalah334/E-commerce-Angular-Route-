@@ -1,12 +1,12 @@
 <nav
   class="bg-white border-gray-200 dark:bg-gray-900"
-  [class.shadow-2xl]="!isLogin"
+  [class.shadow-2xl]="!isLogin()"
 >
   <div
     class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-2 px-4"
   >
     <!----- Logo ------>
-    @if(isLogin == false){
+    @if(isLogin() == false){
     <a
       href="https://flowbite.com/"
       class="logo flex items-center space-x-1 rtl:space-x-reverse"
@@ -62,7 +62,7 @@
         <i class="fa-solid fa-moon"></i>
       </div>
 
-      @if(isLogin == true){
+      @if(isLogin() == true){
       <!----- Notification Icon------>
       <div
         class="notification-icon text-2xl text-gray-450 relative inline-flex items-center text-center dark:hover:text-white dark:text-gray-400"
@@ -73,9 +73,17 @@
         ></div>
       </div>
       <!----- Shopping Icon------>
-      <a routerLink="/cart" class="shopping-icon text-2xl text-gray-450 mb-1"
-        ><i class="fa-solid fa-cart-shopping"></i
-      ></a>
+      <div class="shopping-icon relative">
+        <a routerLink="/cart" class="shopping-icon text-2xl text-gray-450 mb-1"
+          ><i class="fa-solid fa-cart-shopping"></i
+        ></a>
+        <div
+          class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-black-01 bg-primary-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900"
+        >
+          {{ numberOfCartItems() }}
+        </div>
+      </div>
+
       }
 
       <!----- Languages ------>
@@ -205,7 +213,7 @@
         </div>
       </div>
 
-      @if(isLogin == true){
+      @if(isLogin() == true){
       <!----- Become A Seller Button ------>
       <button
         type="button"
@@ -276,7 +284,7 @@
       }
 
       <!-- Login NavarBar  -->
-      @if(isLogin == false){
+      @if(isLogin() == false){
       <ul
         class="flex flex-col font-medium py-2 px-3 mt-4 border border-gray-100 bg-gray-250 rounded-full md:space-x-3 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
       >

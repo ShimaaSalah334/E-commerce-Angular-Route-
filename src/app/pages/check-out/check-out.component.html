@@ -1,68 +1,153 @@
 <section class="check-out pe-10">
   <div class="container mx-auto flex flex-wrap">
-    <h2 class="text-black-01 font-bold text-3xl w-full text-center py-10">
-      Checkout
-    </h2>
+    <div class="flex items-center w-full text-center py-10 justify-center">
+      <img src="images/secure-payment.png" class="w-14 me-2" alt="" />
+      <h2 class="text-black-01 font-bold text-3xl mb-4">Checkout</h2>
+    </div>
     <div class="checkout-form w-8/12">
       <form [formGroup]="checkoutForm">
-        <div class="relative w-11/12 mx-auto mb-4">
-          <textarea
-            id="details"
-            placeholder=" "
-            formControlName="details"
-            class="block w-full px-2.5 pb-2.5 pt-5 text-sm text-black-01 bg-gray-250 focus:border-l-4 focus:border-primary-500 dark:bg-gray-700 border-0 appearance-none dark:text-white dark:focus:border-blue-500 focus:outline-none focus:ring-0 peer"
-          ></textarea>
-
-          <label
-            for="details"
-            class="absolute text-sm text-gray-650 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-black-01 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+        <div class="relative w-11/12 mx-auto">
+          <label for="phone" class="text-gray-650 dark:text-gray-400">
+            <i class="fa-solid fa-phone me-1"></i> Phone</label
           >
-            Details</label
-          >
-        </div>
-
-        <div class="relative w-11/12 mx-auto mb-8">
           <input
             type="tel"
             id="phone"
-            class="block w-full px-2.5 pb-2.5 pt-5 text-sm text-black-01 bg-gray-250 focus:border-l-4 focus:border-primary-500 dark:bg-gray-700 border-0 appearance-none dark:text-white dark:focus:border-blue-500 focus:outline-none focus:ring-0 peer"
+            class="block w-full px-2.5 py-4 mt-2 text-sm text-black-01 rounded-lg bg-gray-250 focus:border focus:border-primary-500 dark:bg-gray-700 border-0 appearance-none dark:text-white dark:focus:border-blue-500 focus:outline-none focus:ring-0 peer"
             placeholder=" "
             formControlName="phone"
           />
-          <label
-            for="phone"
-            class="absolute text-sm text-gray-650 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-black-01 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
-          >
-            Phone</label
-          >
         </div>
+        @let phoneControl=checkoutForm.controls['phone'];
+        @if(phoneControl.errors&& phoneControl.touched){
+        <div
+          class="flex ps-8 pt-3 mb-7 text-sm text-red-800 rounded-lg dark:text-red-400"
+          role="alert"
+        >
+          <svg
+            class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+            />
+          </svg>
+          <span class="sr-only">Danger</span>
+          <div>
+            <ul>
+              @if(phoneControl.hasError('required')){
+              <li>Phone is required.</li>
 
-        <div class="relative w-11/12 mx-auto mb-8">
+              }
+            </ul>
+          </div>
+        </div>
+        }
+        <div class="relative w-11/12 mx-auto mt-4">
+          <label for="city" class="text-gray-650 dark:text-gray-400"
+            ><i class="fa-solid fa-city me-1"></i>City</label
+          >
           <input
             type="text"
             id="city"
-            class="block w-full px-2.5 pb-2.5 pt-5 text-sm text-black-01 bg-gray-250 focus:border-l-4 focus:border-primary-500 dark:bg-gray-700 border-0 appearance-none dark:text-white dark:focus:border-blue-500 focus:outline-none focus:ring-0 peer"
-            placeholder=" "
+            class="block w-full px-2.5 py-4 mt-2 text-sm text-black-01 rounded-lg bg-gray-250 focus:border focus:border-primary-500 dark:bg-gray-700 border-0 appearance-none dark:text-white dark:focus:border-blue-500 focus:outline-none focus:ring-0 peer"
+            placeholder=""
             formControlName="city"
           />
-          <label
-            for="city"
-            class="absolute text-sm text-gray-650 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-black-01 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
-            >City</label
-          >
         </div>
+        @let cityControl=checkoutForm.controls['city']; @if(cityControl.errors&&
+        cityControl.touched){
+        <div
+          class="flex ps-8 pt-3 mb-7 text-sm text-red-800 rounded-lg dark:text-red-400"
+          role="alert"
+        >
+          <svg
+            class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+            />
+          </svg>
+          <span class="sr-only">Danger</span>
+          <div>
+            <ul>
+              @if(cityControl.hasError('required')){
+              <li>City is required.</li>
+
+              }
+            </ul>
+          </div>
+        </div>
+        }
+        <div class="relative w-11/12 mx-auto mt-4">
+          <label for="" class="text-gray-650 dark:text-gray-400">
+            <i class="fa-solid fa-circle-info me-1"></i> Details</label
+          >
+          <textarea
+            id="details"
+            placeholder=""
+            formControlName="details"
+            class="block w-full px-2.5 py-4 mt-2 text-sm text-black-01 rounded-lg bg-gray-250 focus:border focus:border-primary-500 dark:bg-gray-700 border-0 appearance-none dark:text-white dark:focus:border-blue-500 focus:outline-none focus:ring-0 peer"
+          ></textarea>
+        </div>
+        @let detailsControl=checkoutForm.controls['details'];
+        @if(detailsControl.errors&& detailsControl.touched){
+        <div
+          class="flex ps-8 pt-3 mb-7 text-sm text-red-800 rounded-lg dark:text-red-400"
+          role="alert"
+        >
+          <svg
+            class="shrink-0 inline w-4 h-4 me-3 mt-[2px]"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+            />
+          </svg>
+          <span class="sr-only">Danger</span>
+          <div>
+            <ul>
+              @if(detailsControl.hasError('required')){
+              <li>Details is required.</li>
+
+              }
+            </ul>
+          </div>
+        </div>
+        }
       </form>
     </div>
     <div class="orders w-4/12 bg-gray-250 pt-4 pb-7 rounded-lg">
       <h3 class="text-black-01 font-semibold text-xl px-4 mb-4">Your Order</h3>
       @for (order of ordersData.products; track $index) {
-      <div class="order flex justify-between items-center px-4 mb-4">
-        <p class="text-black-01 font-semibold text-sm">
-          {{ order.product.title }}
-        </p>
-        <p class="text-primary-500 font-semibold">
-          {{ order.price | currency : " EGP " }}
-        </p>
+      <div class="order flex items-center gap-5 px-4 mb-5">
+        <img [src]="order.product.imageCover" class="w-16" alt="" />
+        <div class="flex flex-col w-full">
+          <p class="text-black-01 font-semibold text-sm mb-5">
+            {{ order.product.title }}
+          </p>
+          <div class="flex items-center justify-between">
+            <p class="text-primary-500 font-semibold">
+              {{ order.price | currency : " EGP " }}
+            </p>
+            <select
+              id="countries"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 py-1 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              <option>{{ order.count }}</option>
+            </select>
+          </div>
+        </div>
       </div>
       }
       <div class="line bg-gray-300 w-full h-0.5 mt-14 mb-5"></div>
@@ -72,57 +157,82 @@
           {{ ordersData.totalCartPrice | currency : " EGP " }}
         </p>
       </div>
-      <div class="buttons flex items-center justify-center gap-7">
+      <div class="buttons flex flex-col items-center justify-center gap-2 px-4">
         <button
           type="submit"
-          class="text-black-01 disabled:bg-primary-400 bg-primary-400 hover:bg-primary-500 transition-all duration-300 font-medium px-5 py-2.5"
-          (click)="submitOnline()"
-          [disabled]="isLoading"
+          class="text-black-01 w-full disabled:bg-primary-400 bg-primary-400 hover:bg-primary-500 transition-all duration-300 font-medium px-5 py-2.5"
+          (click)="submitCash()"
         >
-          @if (isLoading) {
-          <svg
-            aria-hidden="true"
-            class="w-8 h-6 mx-auto text-primary-400 animate-spin dark:text-gray-600 fill-black-01"
-            viewBox="0 0 100 101"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-              fill="currentColor"
-            />
-            <path
-              d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-              fill="currentFill"
-            />
-          </svg>
-          }@else { Payment Online }
+          Pay Cash
         </button>
+        <p class="text-black-01">Or</p>
+
         <button
           type="submit"
-          class="text-black-01 disabled:bg-primary-400 bg-primary-400 hover:bg-primary-500 transition-all duration-300 font-medium px-5 py-2.5"
-          [disabled]="isLoading"
+          class="text-black-01 w-full disabled:bg-primary-400 bg-primary-400 hover:bg-primary-500 transition-all duration-300 font-medium px-5 py-2.5"
+          (click)="submitOnline()"
         >
-          @if (isLoading) {
-          <svg
-            aria-hidden="true"
-            class="w-8 h-6 mx-auto text-primary-400 animate-spin dark:text-gray-600 fill-black-01"
-            viewBox="0 0 100 101"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-              fill="currentColor"
-            />
-            <path
-              d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-              fill="currentFill"
-            />
-          </svg>
-          }@else { Cash}
+          Pay Online
         </button>
       </div>
     </div>
   </div>
 </section>
+
+<!-- Main modal -->
+<div
+  tabindex="-1"
+  class="overflow-x-hidden fixed top-0 right-0 left-0 z-50 hidden justify-center items-center w-full md:inset-0 max-h-full bg-black/50"
+  #modal
+>
+  <div class="relative p-4 max-h-full">
+    <!-- Modal content -->
+    <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+      <!-- Modal body -->
+
+      <div class="p-4 md:p-5 space-y-4 text-black-01">
+        <h3
+          class="text-xl text-center mx-auto font-semibold dark:text-white pb-5 w-3/4"
+        >
+          Thank you for shopping with us,{{ userData.name }}!
+        </h3>
+        @for (item of ordersData.products; track $index) {
+        <div class="flex items-center justify-between">
+          <p class="text-black-01 max-w-lg">{{ item.product.title }}</p>
+          <p class="text-black-01">{{ item.price | currency : "EGP " }}</p>
+        </div>
+        }
+        <div class="tax-price flex items-center justify-between">
+          <p>Tax</p>
+          <p>{{ cashData.taxPrice | currency : "EGP " }}</p>
+        </div>
+        <div class="shipping-price flex items-center justify-between">
+          <p class="text-black-01">Shipping</p>
+          <p>{{ cashData.shippingPrice | currency : "EGP " }}</p>
+        </div>
+        <div
+          class="total-price flex items-center justify-between font-bold pb-4"
+        >
+          <p>Total</p>
+          <p>{{ cashData.totalOrderPrice | currency : "EGP " }}</p>
+        </div>
+        <div class="line bg-gray-300 h-0.5 w-3/4 mx-auto"></div>
+        <div class="payment-method flex items-center justify-between pt-5">
+          <p class="font-bold">Payment Method</p>
+          <p>{{ cashData.paymentMethodType }}</p>
+        </div>
+        <div class="adress flex items-center justify-between mb-3">
+          <p class="font-bold">Shipping Address</p>
+          <p>{{ cashData.shippingAddress?.city }}</p>
+        </div>
+        <button
+          routerLink="/allorders"
+          type="button"
+          class="text-black-01 w-full disabled:bg-primary-400 bg-primary-400 hover:bg-primary-500 transition-all duration-300 font-medium px-5 py-2.5"
+        >
+          View All Orders
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

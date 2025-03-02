@@ -12,7 +12,6 @@ import { CarouselComponent } from "../../shared/components/ui/carousel/carousel.
 })
 export class RegisterComponent {
   isLoading: boolean = false;
-  errorMessage: string = '';
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;
   constructor(private auth: AuthService, private router: Router) { }
@@ -54,7 +53,6 @@ export class RegisterComponent {
         error: (err) => {
           console.log(err);
           this.isLoading = false;
-          this.errorMessage = err.error.message;
         },
       });
     } else {

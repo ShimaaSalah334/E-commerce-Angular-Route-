@@ -17,7 +17,6 @@ import { CarouselComponent } from "../../shared/components/ui/carousel/carousel.
 })
 export class LoginComponent {
   isLoading: boolean = false;
-  errorMessage: string = '';
   showPassword: boolean = false;
   constructor(private auth: AuthService, private router: Router) { }
   loginForm: FormGroup = new FormGroup({
@@ -42,7 +41,6 @@ export class LoginComponent {
         error: (err) => {
           console.log(err);
           this.isLoading = false;
-          this.errorMessage = err.error.message;
         },
       });
     } else {

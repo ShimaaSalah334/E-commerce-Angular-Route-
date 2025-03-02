@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal, WritableSignal } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -16,10 +16,10 @@ import { Router } from '@angular/router';
   styleUrl: './forget-password.component.scss'
 })
 export class ForgetPasswordComponent {
-  isLoading: boolean = false;
-  showPassword: boolean = false;
-  step: number = 1;
-  email: string = "";
+  isLoading: WritableSignal<boolean> = signal(false);
+  showPassword: WritableSignal<boolean> = signal(false);
+  step: WritableSignal<number> = signal(1);
+  email: WritableSignal<string> = signal("");
   constructor(private auth: AuthService, private router: Router) { }
   forgetForm: FormGroup = new FormGroup({
     email: new FormControl(null, [
@@ -47,54 +47,54 @@ export class ForgetPasswordComponent {
   })
 
   forget() {
-    this.isLoading = true;
+    this.isLoading.set(true);
     this.email = this.forgetForm.get('email')?.value;
     this.resetPasswordForm.get('email')?.patchValue(this.email);
     this.auth.forgetPassword(this.forgetForm.value).subscribe({
       next: (res) => {
         console.log(res);
-        this.isLoading = false;
+        this.isLoading.set(false);
 
-        this.step = 2;
+        this.step.set(2);
       }, error: (err) => {
         console.log(err);
-        this.isLoading = false;
+        this.isLoading.set(false);
 
       }
     })
   }
   confirmCode() {
-    this.isLoading = true;
+    this.isLoading.set(true);
     this.auth.confirmCode(this.confirmCodeForm.value).subscribe({
       next: (res) => {
         console.log(res);
-        this.isLoading = false;
+        this.isLoading.set(false);
 
-        this.step = 3;
+        this.step.set(3);
       }, error: (err) => {
         console.log(err);
-        this.isLoading = false;
+        this.isLoading.set(false);
 
       }
     })
   }
   resetPassword() {
-    this.isLoading = true;
+    this.isLoading.set(true);
     this.auth.resetPassword(this.resetPasswordForm.value).subscribe({
       next: (res) => {
         console.log(res);
-        this.isLoading = false;
+        this.isLoading.set(false);
         localStorage.setItem('userToken', res.token)
         this.router.navigate(['/home'])
       }, error: (err) => {
         console.log(err);
-        this.isLoading = false;
+        this.isLoading.set(false);
 
       }
     })
   }
   togglePasswordVisibility() {
-    this.showPassword = !this.showPassword;
+    this.showPassword.set(!this.showPassword());
   }
 
   onInputChange(event: any, index: number) {

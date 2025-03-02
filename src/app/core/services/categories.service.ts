@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CategoriesService {
-  constructor(private httpClient: HttpClient) { }
   baseUrl: string = environment.baseUrl;
+  constructor(private httpClient: HttpClient) { }
 
   getCategories(): Observable<any> {
     return this.httpClient.get(`${this.baseUrl}/api/v1/categories`);

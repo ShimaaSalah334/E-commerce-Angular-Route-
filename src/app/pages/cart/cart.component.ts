@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, computed, OnInit, signal, WritableSignal } from '@angular/core';
 import { CartService } from '../../core/services/cart.service';
 import { ICart } from '../../core/interfaces/icart';
 import { CurrencyPipe } from '@angular/common';
@@ -12,9 +12,11 @@ import { RouterLink } from '@angular/router';
 })
 export class CartComponent implements OnInit {
   cartData: ICart = {} as ICart
-  cartId: string = ''
-  items: number = 0;
-  constructor(private cart: CartService) { }
+  cartId: WritableSignal<string> = signal('');
+  numberOfCartItems = computed(() => this.cart.cartItems())
+  constructor(private cart: CartService) {
+
+  }
   ngOnInit(): void {
     this.displayCart();
   }
@@ -23,8 +25,9 @@ export class CartComponent implements OnInit {
     this.cart.getCart().subscribe({
       next: (res) => {
         this.cartData = res.data
-        this.items = res.numOfCartItems
-        this.cartId = res.cartId
+        this.cartId.set(res.cartId)
+        this.cart.cartItems.set(res.numOfCartItems)
+
         console.log(res);
 
       }, error: (err) => {
@@ -37,7 +40,7 @@ export class CartComponent implements OnInit {
     this.cart.removeCartItem(id).subscribe({
       next: (res) => {
         this.cartData = res.data
-        this.items = res.numOfCartItems
+        this.cart.cartItems.set(res.numOfCartItems)
 
         console.log(res);
       }, error: (err) => {
@@ -49,7 +52,7 @@ export class CartComponent implements OnInit {
     this.cart.udateProductQuantity(id, count).subscribe({
       next: (res) => {
         this.cartData = res.data
-        this.items = res.numOfCartItems
+        this.cart.cartItems.set(res.numOfCartItems)
 
         console.log(res);
       }, error: (err) => {
@@ -61,7 +64,7 @@ export class CartComponent implements OnInit {
     this.cart.clearCart().subscribe({
       next: (res) => {
         this.cartData = {} as ICart
-        this.items = 0
+        this.cart.cartItems.set(0)
 
         console.log(res);
       }, error: (err) => {
