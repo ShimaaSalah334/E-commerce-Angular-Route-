@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal, WritableSignal } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -16,8 +16,8 @@ import { CarouselComponent } from "../../shared/components/ui/carousel/carousel.
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  isLoading: boolean = false;
-  showPassword: boolean = false;
+  isLoading: WritableSignal<boolean> = signal(false);
+  showPassword: WritableSignal<boolean> = signal(false);
   constructor(private auth: AuthService, private router: Router) { }
   loginForm: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required]),
@@ -27,11 +27,11 @@ export class LoginComponent {
 
   submit() {
     if (this.loginForm.valid) {
-      this.isLoading = true;
+      this.isLoading.set(true);
       this.auth.login(this.loginForm.value).subscribe({
         next: (res) => {
           console.log(res);
-          this.isLoading = false;
+          this.isLoading.set(false);
           localStorage.setItem('userToken', res.token);
           this.auth.decodeToken();
           console.log(this.auth.userData);
@@ -40,7 +40,7 @@ export class LoginComponent {
         },
         error: (err) => {
           console.log(err);
-          this.isLoading = false;
+          this.isLoading.set(false);
         },
       });
     } else {
@@ -49,6 +49,6 @@ export class LoginComponent {
   }
 
   togglePasswordVisibility() {
-    this.showPassword = !this.showPassword;
+    this.showPassword.set(!this.showPassword());
   }
 }

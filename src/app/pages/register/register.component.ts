@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal, WritableSignal } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
@@ -11,9 +11,9 @@ import { CarouselComponent } from "../../shared/components/ui/carousel/carousel.
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
-  isLoading: boolean = false;
-  showPassword: boolean = false;
-  showConfirmPassword: boolean = false;
+  isLoading: WritableSignal<boolean> = signal(false);
+  showPassword: WritableSignal<boolean> = signal(false);
+  showConfirmPassword: WritableSignal<boolean> = signal(false);
   constructor(private auth: AuthService, private router: Router) { }
   registerForm: FormGroup = new FormGroup(
     {
@@ -43,16 +43,16 @@ export class RegisterComponent {
 
   submit() {
     if (this.registerForm.valid) {
-      this.isLoading = true;
+      this.isLoading.set(true);
       this.auth.register(this.registerForm.value).subscribe({
         next: (res) => {
           console.log(res);
-          this.isLoading = false;
+          this.isLoading.set(false);
           this.router.navigate(['/login']);
         },
         error: (err) => {
           console.log(err);
-          this.isLoading = false;
+          this.isLoading.set(false);
         },
       });
     } else {
@@ -70,9 +70,9 @@ export class RegisterComponent {
     }
   }
   togglePasswordVisibility() {
-    this.showPassword = !this.showPassword;
+    this.showPassword.set(!this.showPassword());
   }
   toggleConfirmPassVisibility() {
-    this.showConfirmPassword = !this.showConfirmPassword;
+    this.showConfirmPassword.set(!this.showConfirmPassword());
   }
 }

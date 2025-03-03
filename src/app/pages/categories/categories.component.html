@@ -1,1 +1,23 @@
-<p>categories works!</p>
+<section class="categories">
+  <div class="container mx-auto">
+    <h2 class="text-2xl text-black-01 font-bold py-10">Categories</h2>
+    <div class="flex">
+      @for (category of categoriesList(); track $index) {
+      <div
+        class="category relative flex-1 hover:flex-[3] m-1 transition-all duration-500 ease-in-out"
+      >
+        <img [src]="category.image" class="w-full h-96 object-cover" alt="" />
+        <div
+          class="layer absolute top-0 start-0 w-full h-full flex items-center justify-center bg-black/60 transition-all duration-500 hover:bg-black/20 group"
+        >
+          <p
+            class="text-white font-bold text-xl -rotate-90 text-nowrap group-hover:scale-125 transition-all duration-[0.4s] group-hover:rotate-0"
+          >
+            {{ category.name }}
+          </p>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>

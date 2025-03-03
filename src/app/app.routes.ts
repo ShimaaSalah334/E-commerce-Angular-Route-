@@ -92,6 +92,15 @@ export const routes: Routes = [
         title: 'All Orders',
       },
       {
+        path: 'categories',
+        canActivate: [authGuard],
+        loadComponent: () =>
+          import('./pages/categories/categories.component').then(
+            (c) => c.CategoriesComponent
+          ),
+        title: 'brands',
+      },
+      {
         path: 'brands',
         canActivate: [authGuard],
         loadComponent: () =>

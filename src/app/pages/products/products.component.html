@@ -1,17 +1,28 @@
 <section class="home pt-5">
   <div class="container">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-      @for (product of productsList; track $index) {
+      @for (product of productsList() | search:searchTerm(); track $index) {
       <div
-        class="w-full shadow-sm rounded-lg border border-gray-150 relative dark:bg-gray-800 dark:border-gray-700 pb-2"
+        class="w-full shadow-sm rounded-lg border border-gray-150 relative dark:bg-gray-800 dark:border-gray-700 pb-2 group/container"
       >
         <a [routerLink]="['/details', product._id]">
-          <div class="card-img rounded-lg">
+          <div
+            class="card-img rounded-lg overflow-hidden relative group/imgContainer"
+          >
             <img
-              class="rounded-lg w-full object-cover h-96"
+              class="rounded-lg w-full object-cover h-96 transition-all duration-300 group-hover/container:scale-110"
               [src]="product.imageCover"
               alt="product image"
             />
+            <div
+              class="overlay absolute top-0 end-0 flex justify-end w-full h-full bg-gray-450/40 rounded-lg transition-all duration-300 opacity-0 group-hover/imgContainer:opacity-100"
+            >
+              <div
+                class="icon bg-white w-10 h-10 rounded-full flex items-center justify-center me-2 mt-2 pointer-events-none"
+              >
+                <i class="fa-solid fa-heart text-gray-650"></i>
+              </div>
+            </div>
           </div>
           <div class="card-body flex px-3 py-4">
             <div class="avatar w-2/12">
@@ -72,13 +83,17 @@
         </a>
         <div class="add-to-cart absolute end-4 bottom-6">
           <button
-            class="text-gray-650 bg-gray-150 w-9 h-9 rounded-full flex items-center justify-center"
+            class="text-gray-650 hover:text-primary-500 hover:scale-125 transition-all duration-300 bg-gray-150 w-9 h-9 rounded-full flex items-center justify-center"
+            (click)="addToCart(product._id)"
           >
             <i class="fa-solid fa-cart-plus"></i>
           </button>
         </div>
       </div>
-      }
+      }@empty { @if(searchTerm()){
+
+      <p class="text-center mt-20">empty</p>
+      } }
     </div>
   </div>
 </section>

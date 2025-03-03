@@ -14,9 +14,7 @@ export class CartComponent implements OnInit {
   cartData: ICart = {} as ICart
   cartId: WritableSignal<string> = signal('');
   numberOfCartItems = computed(() => this.cart.cartItems())
-  constructor(private cart: CartService) {
-
-  }
+  constructor(private cart: CartService) { }
   ngOnInit(): void {
     this.displayCart();
   }

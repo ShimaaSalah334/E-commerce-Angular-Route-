@@ -14,7 +14,7 @@
         }
       </p>
     </div>
-    @if (cartData.totalCartPrice>0) {
+    @if (numberOfCartItems()>0) {
     <div class="products">
       @for (product of cartData.products; track $index) {
       <div

@@ -3,7 +3,7 @@
     <div class="product-img w-6/12">
       <img
         [src]="productData.imageCover"
-        class="w-11/12 h-2/3 object-cover mx-auto rounded-2xl"
+        class="w-11/12 h-[58%] object-cover mx-auto rounded-2xl"
         alt=""
         #coverImage
       />
@@ -15,7 +15,7 @@
               [src]="image"
               class="w-36 h-36 object-cover rounded-2xl pointer-events-auto z-50 cursor-pointer"
               alt=""
-              (click)="getatrr($event)"
+              (click)="changeImg($event)"
             />
           </ng-template>
           }
@@ -51,30 +51,25 @@
         </div>
       </div>
       <div class="quantity mb-6">
-        <form class="max-w-sm">
-          <div class="flex items-center relative">
-            <label
-              for="quantity"
-              class="py-2.5 px-4 text-sm font-medium text-center text-gray-500 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
-            >
-              Quantity
-            </label>
-            <input
-              type="number"
-              class="bg-gray-50 border border-gray-300 text-black text-sm rounded-e-lg border-s-gray-100 dark:border-s-gray-700 focus:border-gray-300 border-s-0 block w-1/2 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-              min="0"
-              [max]="productData.quantity"
-              value="0"
-            />
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-2">
+            <button class="bg-primary-500 text-black-01 h-7 px-2 text-[18px]">
+              <i class="fa-solid fa-plus mt-1.5"></i>
+            </button>
+            <p class="to-black-01 text-[18px]">0</p>
+            <button class="bg-primary-500 text-black-01 h-7 px-2 text-[18px]">
+              <i class="fa-solid fa-minus mt-1.5"></i>
+            </button>
           </div>
-        </form>
-      </div>
-      <div class="add-to-cart">
-        <button
-          class="block text-black-01 disabled:bg-primary-400 bg-primary-400 hover:bg-primary-500 transition-all duration-300 font-medium px-5 py-2.5"
-        >
-          <i class="fa-solid fa-cart-plus me-2"></i> Add to cart
-        </button>
+          <div class="add-to-cart">
+            <button
+              class="block text-black-01 disabled:bg-primary-400 bg-primary-400 hover:bg-primary-500 transition-all duration-300 font-medium px-5 py-2.5"
+              (click)="addToCart(productData._id)"
+            >
+              <i class="fa-solid fa-cart-plus me-2"></i> Add to cart
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

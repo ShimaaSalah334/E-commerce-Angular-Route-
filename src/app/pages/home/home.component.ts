@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, computed, OnInit, signal, WritableSignal } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { IProduct } from '../../core/interfaces/iproduct';
@@ -8,17 +8,19 @@ import { CategoriesService } from '../../core/services/categories.service';
 import { CurrencyPipe } from '@angular/common';
 import { CartService } from '../../core/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { SearchPipe } from '../../shared/pipes/search.pipe';
 
 @Component({
   selector: 'app-home',
-  imports: [CarouselModule, RouterLink, RouterLinkActive, CurrencyPipe],
+  imports: [CarouselModule, RouterLink, RouterLinkActive, CurrencyPipe, SearchPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
-  productsList: IProduct[] = [];
-  categoriesList: ICategory[] = [];
-  numberOfCartItems: number = 0
+  productsList: WritableSignal<IProduct[]> = signal([]);
+  categoriesList: WritableSignal<ICategory[]> = signal([]);
+  searchTerm = computed(() => this.products.searchTerm())
+
   customOptions: OwlOptions = {
     loop: false,
     mouseDrag: false,
@@ -54,16 +56,16 @@ export class HomeComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private toastr: ToastrService
   ) { }
+
   ngOnInit(): void {
     this.displayProducts();
     this.displayCategories();
-    this.displayProductsByCat();
   }
 
   displayProducts() {
     this.products.getProducts().subscribe({
       next: (res) => {
-        this.productsList = res.data;
+        this.productsList.set(res.data);
         console.log(this.productsList);
       },
       error: (err) => {
@@ -75,7 +77,7 @@ export class HomeComponent implements OnInit {
   displayCategories() {
     this.categories.getCategories().subscribe({
       next: (res) => {
-        this.categoriesList = res.data;
+        this.categoriesList.set(res.data);
         console.log(this.categoriesList);
       },
       error: (err) => {

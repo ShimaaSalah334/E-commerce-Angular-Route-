@@ -1,4 +1,4 @@
-import { Component, signal, WritableSignal } from '@angular/core';
+import { Component, ElementRef, QueryList, signal, ViewChildren, WritableSignal } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -8,10 +8,10 @@ import {
 } from '@angular/forms';
 import { CarouselComponent } from "../../shared/components/ui/carousel/carousel.component";
 import { AuthService } from '../../core/services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-forget-password',
-  imports: [ReactiveFormsModule, CarouselComponent],
+  imports: [ReactiveFormsModule, CarouselComponent, RouterLink],
   templateUrl: './forget-password.component.html',
   styleUrl: './forget-password.component.scss'
 })
@@ -20,6 +20,8 @@ export class ForgetPasswordComponent {
   showPassword: WritableSignal<boolean> = signal(false);
   step: WritableSignal<number> = signal(1);
   email: WritableSignal<string> = signal("");
+  @ViewChildren('codeInput') codeInputs!: QueryList<ElementRef>;
+
   constructor(private auth: AuthService, private router: Router) { }
   forgetForm: FormGroup = new FormGroup({
     email: new FormControl(null, [
@@ -47,51 +49,65 @@ export class ForgetPasswordComponent {
   })
 
   forget() {
-    this.isLoading.set(true);
-    this.email = this.forgetForm.get('email')?.value;
-    this.resetPasswordForm.get('email')?.patchValue(this.email);
-    this.auth.forgetPassword(this.forgetForm.value).subscribe({
-      next: (res) => {
-        console.log(res);
-        this.isLoading.set(false);
+    if (this.forgetForm.valid) {
+      this.isLoading.set(true);
+      this.email = this.forgetForm.get('email')?.value;
+      this.resetPasswordForm.get('email')?.patchValue(this.email);
+      this.auth.forgetPassword(this.forgetForm.value).subscribe({
+        next: (res) => {
+          console.log(res);
+          this.isLoading.set(false);
 
-        this.step.set(2);
-      }, error: (err) => {
-        console.log(err);
-        this.isLoading.set(false);
+          this.step.set(2);
+        }, error: (err) => {
+          console.log(err);
+          this.isLoading.set(false);
 
-      }
-    })
+        }
+      })
+    } else {
+      this.forgetForm.markAllAsTouched();
+
+    }
   }
   confirmCode() {
-    this.isLoading.set(true);
-    this.auth.confirmCode(this.confirmCodeForm.value).subscribe({
-      next: (res) => {
-        console.log(res);
-        this.isLoading.set(false);
+    if (this.confirmCodeForm.valid) {
 
-        this.step.set(3);
-      }, error: (err) => {
-        console.log(err);
-        this.isLoading.set(false);
+      this.isLoading.set(true);
+      this.auth.confirmCode(this.confirmCodeForm.value).subscribe({
+        next: (res) => {
+          console.log(res);
+          this.isLoading.set(false);
 
-      }
-    })
+          this.step.set(3);
+        }, error: (err) => {
+          console.log(err);
+          this.isLoading.set(false);
+
+        }
+      })
+    } else {
+      this.confirmCodeForm.markAllAsTouched()
+    }
   }
   resetPassword() {
-    this.isLoading.set(true);
-    this.auth.resetPassword(this.resetPasswordForm.value).subscribe({
-      next: (res) => {
-        console.log(res);
-        this.isLoading.set(false);
-        localStorage.setItem('userToken', res.token)
-        this.router.navigate(['/home'])
-      }, error: (err) => {
-        console.log(err);
-        this.isLoading.set(false);
+    if (this.resetPasswordForm.valid) {
+      this.isLoading.set(true);
+      this.auth.resetPassword(this.resetPasswordForm.value).subscribe({
+        next: (res) => {
+          console.log(res);
+          this.isLoading.set(false);
+          localStorage.setItem('userToken', res.token)
+          this.router.navigate(['/home'])
+        }, error: (err) => {
+          console.log(err);
+          this.isLoading.set(false);
 
-      }
-    })
+        }
+      })
+    } else {
+      this.resetPasswordForm.markAllAsTouched()
+    }
   }
   togglePasswordVisibility() {
     this.showPassword.set(!this.showPassword());
@@ -109,7 +125,8 @@ export class ForgetPasswordComponent {
 
     // Move focus to the next input
     if (value.length === 1 && index < 5) {
-      const nextInput = document.getElementById(`code-${index + 2}`) as HTMLInputElement;
+      const nextInput = this.codeInputs.toArray()[index + 1].nativeElement;
+
       if (nextInput) {
         nextInput.focus();
       }
