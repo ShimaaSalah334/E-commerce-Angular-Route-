@@ -15,6 +15,8 @@ export class NavbarComponent implements OnInit {
   isLogin: InputSignal<boolean> = input(true)
   searchTerm: WritableSignal<string> = signal("")
   numberOfCartItems = computed(() => this.cart.cartItems())
+  isDarkMode: WritableSignal<boolean> = signal(false);
+  theme = localStorage['theme']
   constructor(private auth: AuthService, private cart: CartService, private products: ProductsService) { }
   ngOnInit(): void {
     const token = localStorage.getItem('userToken');
@@ -30,6 +32,7 @@ export class NavbarComponent implements OnInit {
     } else {
       console.log('User is not logged in. Skipping cart fetch.');
     }
+    this.changeTheme(this.theme)
   }
 
   logout() {
@@ -38,5 +41,31 @@ export class NavbarComponent implements OnInit {
 
   onSearch() {
     this.products.setSearchTerm(this.searchTerm())
+  }
+  changeTheme(theme: string): void {
+    document.documentElement.classList.remove("light", "dark");
+
+    switch (theme) {
+      case 'dark':
+        document.documentElement.classList.add('dark');
+        localStorage['theme'] = "dark";
+        this.isDarkMode.set(true);
+
+        break;
+      case 'light':
+        document.documentElement.classList.add('light');
+        localStorage['theme'] = "light";
+        this.isDarkMode.set(false);
+
+        break;
+      default:
+        const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const defaultTheme = systemPrefersDark ? "dark" : "light";
+
+        document.documentElement.classList.add(defaultTheme);
+        this.isDarkMode.set(systemPrefersDark);
+        delete localStorage['theme'];
+        break;
+    }
   }
 }

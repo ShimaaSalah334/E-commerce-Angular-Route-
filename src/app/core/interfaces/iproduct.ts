@@ -23,6 +23,7 @@ export interface Subcategory {
   name: string;
   slug: string;
   category: string;
+
 }
 
 export interface Category {

@@ -26,7 +26,7 @@
   class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
   aria-label="Sidebar"
 >
-  <div class="h-full py-4 overflow-y-auto bg-gray-30 dark:bg-gray-800 relative">
+  <div class="h-full py-4 overflow-y-auto bg-gray-30 dark:bg-black-03 relative">
     <a href="#" class="logo flex items-center ps-4 mb-10">
       <img src="images/shopify.png" class="h-14 me-3" alt="Flowbite Logo" />
       <span
@@ -38,8 +38,8 @@
       <li>
         <a
           routerLink="/home"
-          routerLinkActive="active bg-gray-250 rounded-e-full "
-          class="flex items-center p-2 ps-8 text-gray-650 relative transition-all duration-300 dark:text-white dark:hover:bg-gray-700"
+          routerLinkActive="active text-gray-850 bg-gray-250 rounded-e-full dark:bg-black-04 dark:text-white"
+          class="flex items-center p-2 ps-8 text-gray-650 relative transition-all duration-300 hover:bg-gray-250 hover:rounded-e-full dark:text-gray-350 dark:hover:bg-black-04"
         >
           <i
             class="fa-solid fa-house text-[18px] transition-all duration-300"
@@ -50,8 +50,8 @@
       <li>
         <a
           routerLink="/products"
-          routerLinkActive="active bg-gray-250 rounded-e-full "
-          class="flex items-center p-2 ps-8 text-gray-650 relative transition-all duration-300 dark:text-white dark:hover:bg-gray-700"
+          routerLinkActive="active text-gray-850 bg-gray-250 rounded-e-full dark:bg-black-04 dark:text-white"
+          class="flex items-center p-2 ps-8 text-gray-650 relative transition-all duration-300 hover:bg-gray-250 hover:rounded-e-full dark:text-gray-350 dark:hover:bg-black-04"
         >
           <i
             class="fa-solid fa-box text-[18px] transition-all duration-300"
@@ -62,20 +62,27 @@
       <li>
         <a
           routerLink="/categories"
-          routerLinkActive="active bg-gray-250 rounded-e-full "
-          class="flex items-center p-2 ps-8 text-gray-650 relative transition-all duration-300 dark:text-white dark:hover:bg-gray-700"
+          routerLinkActive="active text-gray-850 bg-gray-250 rounded-e-full dark:bg-black-04 dark:text-white"
+          class="flex items-center p-2 ps-7 text-gray-650 relative transition-all duration-300 hover:bg-gray-250 hover:rounded-e-full dark:text-gray-350 dark:hover:bg-black-04"
         >
-          <i
-            class="fa-solid fa-grid-2 text-[18px] transition-all duration-300"
-          ></i>
+          <svg
+            class="w-5 transition-all duration-300 category-icon"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"
+            />
+          </svg>
           <span class="ms-3 transition-all duration-300">Categories</span>
         </a>
       </li>
       <li>
         <a
           routerLink="/brands"
-          routerLinkActive="active bg-gray-250 rounded-e-full "
-          class="flex items-center p-2 ps-8 text-gray-650 relative transition-all duration-300 dark:text-white dark:hover:bg-gray-700"
+          routerLinkActive="active text-gray-850 bg-gray-250 rounded-e-full dark:bg-black-04 dark:text-white"
+          class="flex items-center p-2 ps-8 text-gray-650 relative transition-all duration-300 hover:bg-gray-250 hover:rounded-e-full dark:text-gray-350 dark:hover:bg-black-04"
         >
           <i
             class="fa-solid fa-tag text-[18px] transition-all duration-300"
@@ -85,14 +92,14 @@
       </li>
       <li>
         <a
-          routerLink="/favourite"
-          routerLinkActive="active bg-gray-250 rounded-e-full "
-          class="active flex items-center p-2 ps-8 text-gray-650 relative transition-all duration-300 dark:text-white dark:hover:bg-gray-700"
+          routerLink="/wishList"
+          routerLinkActive="active text-gray-850 bg-gray-250 rounded-e-full dark:bg-black-04 dark:text-white"
+          class="flex items-center p-2 ps-8 text-gray-650 relative transition-all duration-300 hover:bg-gray-250 hover:rounded-e-full dark:text-gray-350 dark:hover:bg-black-04"
         >
           <i
             class="fa-solid fa-heart text-[18px] transition-all duration-300"
           ></i>
-          <span class="ms-3 transition-all duration-300">Favourite</span>
+          <span class="ms-3 transition-all duration-300">Wish-List</span>
         </a>
       </li>
       <!---Contact Collapse--->
@@ -101,7 +108,7 @@
           <h2 id="accordion-open-heading-1">
             <button
               type="button"
-              class="flex items-center justify-between w-full p-2 ps-8 relative rtl:text-right text-gray-650 dark:text-gray-400 dark:hover:bg-gray-800 gap-3 rounded-e-full transition-all duration-300"
+              class="flex items-center justify-between w-full p-2 ps-8 relative rtl:text-right text-gray-650 hover:bg-gray-250 hover:rounded-e-full dark:text-gray-350 dark:hover:bg-black-04 gap-3 rounded-e-full transition-all duration-300"
               data-accordion-target="#accordion-open-body-1"
               aria-expanded="false"
               aria-controls="accordion-open-body-1"
@@ -139,28 +146,28 @@
               <li class="py-1">
                 <a
                   href=""
-                  class="flex items-center justify-center w-7 h-7 rounded-full text-center text-gray-30 bg-gray-650 hover:bg-transparent hover:text-primary-500 hover:text-xl transition-all duration-300"
+                  class="flex items-center justify-center w-7 h-7 rounded-full text-center text-gray-30 bg-gray-650 hover:bg-transparent hover:text-primary-500 hover:text-xl transition-all duration-300 dark:text-gray-350"
                   ><i class="fa-brands fa-facebook"></i
                 ></a>
               </li>
               <li class="py-1">
                 <a
                   href=""
-                  class="flex items-center justify-center w-7 h-7 rounded-full text-center text-gray-30 bg-gray-650 hover:bg-transparent hover:text-primary-500 hover:text-xl transition-all duration-300"
+                  class="flex items-center justify-center w-7 h-7 rounded-full text-center text-gray-30 bg-gray-650 hover:bg-transparent hover:text-primary-500 hover:text-xl transition-all duration-300 dark:text-gray-350"
                   ><i class="fa-brands fa-instagram"></i
                 ></a>
               </li>
               <li class="py-1">
                 <a
                   href=""
-                  class="flex items-center justify-center w-7 h-7 rounded-full text-center text-gray-30 bg-gray-650 hover:bg-transparent hover:text-primary-500 hover:text-xl transition-all duration-300"
+                  class="flex items-center justify-center w-7 h-7 rounded-full text-center text-gray-30 bg-gray-650 hover:bg-transparent hover:text-primary-500 hover:text-xl transition-all duration-300 dark:text-gray-350"
                   ><i class="fa-brands fa-twitter"></i
                 ></a>
               </li>
               <li class="py-1">
                 <a
                   href=""
-                  class="flex items-center justify-center w-7 h-7 rounded-full text-center text-gray-30 bg-gray-650 hover:bg-transparent hover:text-primary-500 hover:text-xl transition-all duration-300"
+                  class="flex items-center justify-center w-7 h-7 rounded-full text-center text-gray-30 bg-gray-650 hover:bg-transparent hover:text-primary-500 hover:text-xl transition-all duration-300 dark:text-gray-350"
                   ><i class="fa-brands fa-linkedin"></i
                 ></a>
               </li>
@@ -170,7 +177,7 @@
       </li>
     </ul>
     <div
-      class="sidebar-footer ps-8 text-gray-650 font-medium absolute bottom-4"
+      class="sidebar-footer ps-8 text-gray-650 font-medium absolute bottom-4 dark:text-gray-350"
     >
       <div class="setting mb-6">
         <i
@@ -180,7 +187,7 @@
       </div>
       <div class="help flex items-center">
         <i
-          class="fa-solid fa-question text-sm p-2 me-3 flex items-center justify-center w-5 h-5 rounded-full text-gray-30 bg-gray-650"
+          class="fa-solid fa-question text-sm p-2 me-3 flex items-center justify-center w-5 h-5 rounded-full text-gray-30 bg-gray-650 dark:text-gray-350"
         ></i>
         <span>Help</span>
       </div>

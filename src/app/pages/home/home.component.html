@@ -4,7 +4,7 @@
       <a
         routerLink="/cat/all"
         routerLinkActive="bg-gray-850 text-white "
-        class="text-sm text-gray-650 bg-gray-150 px-3 py-2 rounded-full hover:bg-gray-850 hover:text-white transition-all duration-300"
+        class="text-sm text-gray-650 bg-gray-150 px-3 py-2 rounded-full hover:bg-gray-850 hover:text-white transition-all duration-300 dark:bg-black-04 dark:text-gray-450 dark:hover:bg-gray-150 dark:hover:text-gray-850"
       >
         All
       </a>
@@ -15,7 +15,7 @@
       <a
         [routerLink]="['/cat', category._id]"
         routerLinkActive="bg-gray-850 text-white"
-        class="text-sm text-gray-650 bg-gray-150 px-3 py-2 rounded-full hover:bg-gray-850 hover:text-white transition-all duration-300"
+        class="text-sm text-gray-650 bg-gray-150 px-3 py-2 rounded-full hover:bg-gray-850 hover:text-white transition-all duration-300 dark:bg-black-04 dark:text-gray-450 dark:hover:bg-gray-150 dark:hover:text-gray-850"
         >{{ category.name }}</a
       >
     </ng-template>
@@ -28,8 +28,21 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       @for (product of productsList() | search:searchTerm(); track $index) {
       <div
-        class="w-full shadow-sm rounded-lg border border-gray-150 relative dark:bg-gray-800 dark:border-gray-700 pb-2 group/container"
+        class="w-full shadow-sm rounded-lg border border-gray-150 relative dark:bg-transparent dark:border-none pb-2 group/container"
       >
+        <div
+          class="icon bg-gray-250 w-9 h-9 rounded-full flex items-center justify-center absolute top-2 end-2 z-50 cursor-pointer"
+        >
+          <button (click)="toggleWishlistItem(product._id)">
+            <i
+              class="fa-solid fa-heart transition-all duration-300 scale-100 hover:scale-150"
+              [class]="{
+                'text-red-500': isInWishlist(product._id),
+                'text-gray-650': !isInWishlist(product._id)
+              }"
+            ></i>
+          </button>
+        </div>
         <a [routerLink]="['/details', product._id]">
           <div
             class="card-img rounded-lg overflow-hidden relative group/imgContainer"
@@ -40,14 +53,8 @@
               alt="product image"
             />
             <div
-              class="overlay absolute top-0 end-0 flex justify-end w-full h-full bg-gray-450/40 rounded-lg transition-all duration-300 opacity-0 group-hover/imgContainer:opacity-100"
-            >
-              <div
-                class="icon bg-white w-10 h-10 rounded-full flex items-center justify-center me-2 mt-2 pointer-events-none"
-              >
-                <i class="fa-solid fa-heart text-gray-650"></i>
-              </div>
-            </div>
+              class="overlay absolute top-0 end-0 flex justify-end w-full h-full bg-gray-450/40 rounded-lg transition-all duration-300 opacity-0 group-hover/imgContainer:opacity-100 dark:hover:bg-black/40"
+            ></div>
           </div>
           <div class="card-body flex px-3 py-4">
             <div class="avatar w-2/12">
@@ -66,7 +73,9 @@
                 </h5>
               </div>
               <div class="description mb-4">
-                <p class="text-gray-650 text-sm dark:text-white line-clamp-1">
+                <p
+                  class="text-gray-650 text-sm dark:text-gray-450 line-clamp-1"
+                >
                   {{ product.description }}
                 </p>
               </div>
@@ -77,7 +86,7 @@
               </div>
               <div class="flex items-center space-x-3 rtl:space-x-reverse">
                 <div class="sales">
-                  <p class="text-gray-650 text-xs">
+                  <p class="text-gray-650 text-xs dark:text-gray-450">
                     {{
                       product.sold >= 1000
                         ? product.sold.toLocaleString()
@@ -98,7 +107,7 @@
                       d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
                     />
                   </svg>
-                  <span class="text-gray-650 text-xs dark:text-blue-800 ms-3"
+                  <span class="text-gray-650 text-xs dark:text-gray-450 ms-3"
                     >{{ product.ratingsAverage }}
                   </span>
                 </div>
@@ -108,14 +117,28 @@
         </a>
         <div class="add-to-cart absolute end-4 bottom-6">
           <button
-            class="text-gray-650 hover:text-primary-500 hover:scale-125 transition-all duration-300 bg-gray-150 w-9 h-9 rounded-full flex items-center justify-center"
+            class="text-gray-650 hover:text-primary-500 hover:scale-125 transition-all duration-300 bg-gray-150 w-9 h-9 rounded-full flex items-center justify-center dark:text-white dark:bg-black-02"
             (click)="addToCart(product._id)"
           >
             <i class="fa-solid fa-cart-plus"></i>
           </button>
         </div>
       </div>
-      }
+      }@empty { @if(searchTerm()){
+
+      <div class="not-found col-span-full mx-auto text-center py-20">
+        <div class="not-found-icon mb-6">
+          <img src="images/not-found.png" class="w-1/4 mx-auto" alt="" />
+        </div>
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">
+          No Results Found
+        </h3>
+        <p class="text-gray-600 mb-6">
+          We couldn't find any products matching
+          <span class="font-bold">"{{ searchTerm() }}"</span>.
+        </p>
+      </div>
+      } }
     </div>
   </div>
 </section>

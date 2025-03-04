@@ -29,7 +29,7 @@
         </p>
       </div>
       <div class="title mb-3.5">
-        <p class="text-black font-semibold text-2xl">
+        <p class="text-black font-semibold text-2xl dark:text-white">
           {{ productData.title }}
         </p>
       </div>
@@ -38,7 +38,7 @@
       </div>
       <div class="flex justify-between mb-6">
         <div class="price">
-          <p class="text-black font-bold text-xl">
+          <p class="text-black font-bold text-xl dark:text-white">
             <span class="font-normal me-2">Price : </span
             >{{ productData.price | currency : "EGP " }}
           </p>
@@ -50,13 +50,13 @@
           </p>
         </div>
       </div>
-      <div class="quantity mb-6">
+      <div class="quantity">
         <div class="flex items-center justify-between">
           <div class="flex items-center space-x-2">
             <button class="bg-primary-500 text-black-01 h-7 px-2 text-[18px]">
               <i class="fa-solid fa-plus mt-1.5"></i>
             </button>
-            <p class="to-black-01 text-[18px]">0</p>
+            <p class="to-black-01 text-[18px] dark:text-white">0</p>
             <button class="bg-primary-500 text-black-01 h-7 px-2 text-[18px]">
               <i class="fa-solid fa-minus mt-1.5"></i>
             </button>

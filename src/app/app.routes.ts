@@ -98,7 +98,7 @@ export const routes: Routes = [
           import('./pages/categories/categories.component').then(
             (c) => c.CategoriesComponent
           ),
-        title: 'brands',
+        title: 'categories',
       },
       {
         path: 'brands',

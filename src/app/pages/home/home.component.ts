@@ -1,4 +1,4 @@
-import { Component, computed, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, computed, ElementRef, OnInit, QueryList, signal, ViewChild, ViewChildren, viewChildren, WritableSignal } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { IProduct } from '../../core/interfaces/iproduct';
@@ -9,6 +9,7 @@ import { CurrencyPipe } from '@angular/common';
 import { CartService } from '../../core/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { SearchPipe } from '../../shared/pipes/search.pipe';
+import { WishListService } from '../../core/services/wish-list.service';
 
 @Component({
   selector: 'app-home',
@@ -30,8 +31,8 @@ export class HomeComponent implements OnInit {
     autoWidth: false,
     navSpeed: 700,
     navText: [
-      '<i class="fa-solid fa-angle-left text-gray-650" ></i>',
-      '<i class="fa-solid fa-angle-right text-gray-650"></i>',
+      '<i class="fa-solid fa-angle-left owel-nav-icon" ></i>',
+      '<i class="fa-solid fa-angle-right owel-nav-icon"></i>',
     ],
     responsive: {
       0: {
@@ -53,6 +54,7 @@ export class HomeComponent implements OnInit {
     private products: ProductsService,
     private categories: CategoriesService,
     private cart: CartService,
+    private wishList: WishListService,
     private activatedRoute: ActivatedRoute,
     private toastr: ToastrService
   ) { }
@@ -60,6 +62,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.displayProducts();
     this.displayCategories();
+    this.wishList.fetchWishList()
   }
 
   displayProducts() {
@@ -109,6 +112,14 @@ export class HomeComponent implements OnInit {
 
       },
     })
+  }
+
+
+  toggleWishlistItem(productId: string) {
+    this.wishList.toggleWishlistItem(productId);
+  }
+  isInWishlist(productId: string): boolean {
+    return this.wishList.isInWishlist(productId);
   }
   showSuccess(message: string) {
     this.toastr.success(message, 'Shopify');

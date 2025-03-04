@@ -6,6 +6,7 @@ import { CurrencyPipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from '../../core/services/cart.service';
 import { SearchPipe } from '../../shared/pipes/search.pipe';
+import { WishListService } from '../../core/services/wish-list.service';
 @Component({
   selector: 'app-products',
   imports: [RouterLink, CurrencyPipe, SearchPipe],
@@ -20,10 +21,13 @@ export class ProductsComponent {
     private products: ProductsService,
     private cart: CartService,
     private toastr: ToastrService,
+    private wishList: WishListService,
     private activatedRoute: ActivatedRoute
   ) { }
   ngOnInit(): void {
     this.displayProducts();
+    this.wishList.fetchWishList()
+
 
   }
 
@@ -53,5 +57,10 @@ export class ProductsComponent {
   showSuccess(message: string) {
     this.toastr.success(message, 'Shopify');
   }
-
+  toggleWishlistItem(productId: string) {
+    this.wishList.toggleWishlistItem(productId);
+  }
+  isInWishlist(productId: string): boolean {
+    return this.wishList.isInWishlist(productId);
+  }
 }

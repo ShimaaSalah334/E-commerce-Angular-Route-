@@ -1,1 +1,26 @@
-<p>brands works!</p>
+<section class="brands">
+  <div class="container mx-auto">
+    <div class="flex items-center">
+      <img src="/images/category.png" class="w-10 me-1" alt="" />
+      <h2 class="text-2xl text-black-01 font-bold py-10 dark:text-white">
+        Our Brands
+      </h2>
+    </div>
+    <div class="grid grid-cols-5 gap-5">
+      @for (brand of brandsList() ; track $index) {
+      <div
+        class="brand-card bg-white shadow-gray-450 shadow-md py-5 transition-all duration-300 hover:scale-105 dark:bg-transparent dark:shadow-none"
+      >
+        <div
+          class="title text-center text-sm text-black-01 pb-3 dark:text-white"
+        >
+          <p>{{ brand.name }}</p>
+        </div>
+        <div class="brand-img">
+          <img [src]="brand.image" class="w-full" alt="" />
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>

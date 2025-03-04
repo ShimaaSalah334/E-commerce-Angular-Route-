@@ -26,7 +26,7 @@ export class DetailsComponent implements OnInit {
     touchDrag: false,
     pullDrag: false,
     dots: false,
-    margin: 0,
+    margin: 10,
     navSpeed: 700,
     navText: ['<i class="fa-solid fa-angle-left text-gray-650" ></i>',
       '<i class="fa-solid fa-angle-right text-gray-650"></i>',],

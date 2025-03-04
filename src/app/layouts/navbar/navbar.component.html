@@ -1,5 +1,5 @@
 <nav
-  class="bg-white border-gray-200 dark:bg-gray-900"
+  class="bg-white border-gray-200 dark:bg-transparent"
   [class.shadow-2xl]="!isLogin()"
 >
   <div
@@ -26,7 +26,7 @@
         class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
       >
         <svg
-          class="w-4 h-4 text-gray-600 dark:text-gray-400"
+          class="w-4 h-4 text-gray-600 dark:text-white"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -44,7 +44,7 @@
       <input
         type="text"
         id="default-search"
-        class="block w-56 p-2 ps-10 text-sm text-[#212b36] rounded-full bg-[#f3f5f7] border-none focus:ring-transparent dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder:text-[#212b36]"
+        class="block w-56 p-2 ps-10 text-sm text-[#212b36] rounded-full bg-[#f3f5f7] border-transparent outline-none focus:outline-none placeholder:text-[#212b36] transition-all duration-300 dark:bg-black-02 dark:placeholder-gray-650 dark:text-white dark:focus:border-primary-500"
         placeholder="Search"
         [(ngModel)]="searchTerm"
         (input)="onSearch()"
@@ -58,14 +58,19 @@
       id="navbar-language"
     >
       <!----- Dark  Mood Icon------>
-      <div class="dark-icon text-2xl text-gray-450">
-        <i class="fa-solid fa-moon"></i>
+      <div
+        class="dark-icon text-2xl text-gray-450 cursor-pointer dark:text-gray-650"
+      >
+        <i
+          class="fa-solid fa-moon"
+          (click)="changeTheme(isDarkMode() ? 'light' : 'dark')"
+        ></i>
       </div>
 
       @if(isLogin() == true){
       <!----- Notification Icon------>
       <div
-        class="notification-icon text-2xl text-gray-450 relative inline-flex items-center text-center dark:hover:text-white dark:text-gray-400"
+        class="notification-icon text-2xl text-gray-450 relative inline-flex items-center text-center dark:text-gray-650"
       >
         <i class="fa-solid fa-bell"></i>
         <div
@@ -74,7 +79,9 @@
       </div>
       <!----- Shopping Icon------>
       <div class="shopping-icon relative">
-        <a routerLink="/cart" class="shopping-icon text-2xl text-gray-450 mb-1"
+        <a
+          routerLink="/cart"
+          class="shopping-icon text-2xl text-gray-450 mb-1 dark:text-gray-650"
           ><i class="fa-solid fa-cart-shopping"></i
         ></a>
         <div
@@ -286,21 +293,21 @@
       <!-- Login NavarBar  -->
       @if(isLogin() == false){
       <ul
-        class="flex flex-col font-medium py-2 px-3 mt-4 border border-gray-100 bg-gray-250 rounded-full md:space-x-3 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+        class="flex flex-col font-medium py-2 px-3 mt-4 border border-gray-100 bg-gray-250 rounded-full md:space-x-3 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:bg-black-03"
       >
         <li>
           <a
             routerLink="/register"
-            routerLinkActive="active bg-primary-500 "
-            class="block py-1 px-6 text-black-01 rounded-full transition-colors duration-200 ease-in-out hover:text-primary-500 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+            routerLinkActive="active bg-primary-500 dark:text-black-01 "
+            class="block py-1 px-6 text-black-01 rounded-full transition-colors duration-200 ease-in-out hover:text-primary-500 dark:text-white"
             >Sign Up</a
           >
         </li>
         <li>
           <a
             routerLink="/login"
-            routerLinkActive="active bg-primary-500 t"
-            class="block py-1 px-6 text-black-01 rounded-full transition-colors duration-200 ease-in-out hover:text-primary-500 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+            routerLinkActive="active bg-primary-500 dark:text-black-01 "
+            class="block py-1 px-6 text-black-01 rounded-full transition-colors duration-200 ease-in-out hover:text-primary-500 dark:text-white"
             >Login</a
           >
         </li>

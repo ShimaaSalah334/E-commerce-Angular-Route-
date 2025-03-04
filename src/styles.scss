@@ -3,6 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.owel-nav-icon {
+  @apply flex justify-center items-center px-4 w-8 h-8 rounded-full transition-all duration-500 bg-gray-150 hover:bg-gray-450 hover:text-white text-gray-650 dark:bg-black-04 dark:text-gray-450 dark:hover:bg-gray-150 dark:hover:text-gray-850;
+}
+
 .cat-slider {
   /* Global styles for Owl Carousel */
   .owl-stage-outer {
@@ -35,7 +39,7 @@
       }
     }
     .owl-nav [class*="owl-"] {
-      background-color: #f3f5f7;
+      background-color: transparent;
       width: 34px;
       height: 34px;
       display: flex;
@@ -47,13 +51,6 @@
       -ms-border-radius: 50%;
       -o-border-radius: 50%;
       pointer-events: auto;
-      transition: all 0.3s ease;
-      &:hover {
-        background-color: #919eab;
-      }
-      &:hover i {
-        color: white;
-      }
     }
   }
   .owl-carousel .owl-nav .owl-next {

@@ -1,11 +1,13 @@
-<section class="signup py-16 bg-gray-250">
+<section class="signup py-16 bg-gray-250 dark:bg-black-01">
   <div class="container">
     <div
-      class="grid grid-cols-2 w-3/4 items-center mx-auto bg-white shadow-2xl rounded-3xl"
+      class="grid grid-cols-2 w-3/4 items-center mx-auto bg-white shadow-2xl rounded-3xl dark:bg-black-03 dark:shadow-black"
     >
       <div class="register-form flex flex-col justify-center py-5 px-8">
         <div class="title mb-11">
-          <h2 class="font-semibold uppercase text-xl text-black-01 mb-4">
+          <h2
+            class="font-semibold uppercase text-xl text-black-01 mb-4 dark:text-white"
+          >
             <i
               class="fa-solid fa-right-to-bracket text-primary-500 text-2xl me-3"
             ></i>
@@ -22,13 +24,13 @@
             <input
               type="text"
               id="name"
-              class="block w-full px-2.5 pb-2.5 pt-5 text-sm text-black-01 bg-gray-250 focus:border-l-4 focus:border-primary-500 dark:bg-gray-700 border-0 appearance-none dark:text-white dark:focus:border-blue-500 focus:outline-none focus:ring-0 peer"
+              class="block w-full px-2.5 pb-2.5 pt-5 text-sm text-black-01 bg-gray-250 focus:border-l-4 focus:border-primary-500 dark:bg-gray-850 border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 peer"
               placeholder=" "
               formControlName="name"
             />
             <label
               for="name"
-              class="absolute text-sm text-gray-650 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-black-01 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+              class="absolute text-sm text-gray-650 dark:text-white duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-black-01 peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
               ><i class="fa-solid fa-user-pen me-1"></i> Name</label
             >
           </div>
@@ -67,13 +69,13 @@
             <input
               type="email"
               id="email"
-              class="block w-full px-2.5 pb-2.5 pt-5 text-sm text-black-01 bg-gray-250 focus:border-l-4 focus:border-primary-500 dark:bg-gray-700 border-0 appearance-none dark:text-white dark:focus:border-blue-500 focus:outline-none focus:ring-0 peer"
+              class="block w-full px-2.5 pb-2.5 pt-5 text-sm text-black-01 bg-gray-250 focus:border-l-4 focus:border-primary-500 dark:bg-gray-850 border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 peer"
               placeholder=" "
               formControlName="email"
             />
             <label
               for="email"
-              class="absolute text-sm text-gray-650 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-black-01 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+              class="absolute text-sm text-gray-650 dark:text-white duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-black-01 peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
               ><i class="fa-solid fa-envelope-circle-check me-1"></i>
               Email</label
             >
@@ -118,22 +120,24 @@
               (click)="togglePasswordVisibility()"
             >
               @if(showPassword()){
-              <i class="fa-solid fa-eye-slash text-gray-650"></i>
+              <i
+                class="fa-solid fa-eye-slash text-gray-650 dark:text-white"
+              ></i>
               }@else {
-              <i class="fa-solid fa-eye text-gray-650"></i>
+              <i class="fa-solid fa-eye text-gray-650 dark:text-white"></i>
 
               }
             </div>
             <input
               [type]="showPassword() ? 'text' : 'password'"
               id="pass"
-              class="block w-full px-2.5 pb-2.5 pt-5 text-sm text-black-01 bg-gray-250 focus:border-l-4 focus:border-primary-500 dark:bg-gray-700 border-0 appearance-none dark:text-white dark:focus:border-blue-500 focus:outline-none focus:ring-0 peer"
+              class="block w-full px-2.5 pb-2.5 pt-5 text-sm text-black-01 bg-gray-250 focus:border-l-4 focus:border-primary-500 dark:bg-gray-850 border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 peer"
               placeholder=" "
               formControlName="password"
             />
             <label
               for="pass"
-              class="absolute text-sm text-gray-650 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-black-01 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+              class="absolute text-sm text-gray-650 dark:text-white duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-black-01 peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
               ><i class="fa-solid fa-lock me-1"></i> Password</label
             >
           </div>
@@ -178,22 +182,24 @@
               (click)="toggleConfirmPassVisibility()"
             >
               @if(showConfirmPassword()){
-              <i class="fa-solid fa-eye-slash text-gray-650"></i>
+              <i
+                class="fa-solid fa-eye-slash text-gray-650 dark:text-white"
+              ></i>
               }@else {
-              <i class="fa-solid fa-eye text-gray-650"></i>
+              <i class="fa-solid fa-eye text-gray-650 dark:text-white"></i>
 
               }
             </div>
             <input
               [type]="showConfirmPassword() ? 'text' : 'password'"
               id="confirmPass"
-              class="block w-full px-2.5 pb-2.5 pt-5 text-sm text-black-01 bg-gray-250 focus:border-l-4 focus:border-primary-500 dark:bg-gray-700 border-0 appearance-none dark:text-white dark:focus:border-blue-500 focus:outline-none focus:ring-0 peer"
+              class="block w-full px-2.5 pb-2.5 pt-5 text-sm text-black-01 bg-gray-250 focus:border-l-4 focus:border-primary-500 dark:bg-gray-850 border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 peer"
               placeholder=" "
               formControlName="rePassword"
             />
             <label
               for="confirmPass"
-              class="absolute text-sm text-gray-650 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-black-01 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+              class="absolute text-sm text-gray-650 dark:text-white duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-black-01 peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
               ><i class="fa-solid fa-lock me-1"></i> Confirm Password</label
             >
           </div>
@@ -251,13 +257,13 @@
             <input
               type="tel"
               id="phone"
-              class="block w-full px-2.5 pb-2.5 pt-5 text-sm text-black-01 bg-gray-250 focus:border-l-4 focus:border-primary-500 dark:bg-gray-700 border-0 appearance-none dark:text-white dark:focus:border-blue-500 focus:outline-none focus:ring-0 peer"
+              class="block w-full px-2.5 pb-2.5 pt-5 text-sm text-black-01 bg-gray-250 focus:border-l-4 focus:border-primary-500 dark:bg-gray-850 border-0 appearance-none dark:text-white focus:outline-none focus:ring-0 peer"
               placeholder=" "
               formControlName="phone"
             />
             <label
               for="phone"
-              class="absolute text-sm text-gray-650 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-black-01 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
+              class="absolute text-sm text-gray-650 dark:text-white duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-black-01 peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
               ><i class="fa-solid fa-phone me-1"></i> Phone</label
             >
           </div>
