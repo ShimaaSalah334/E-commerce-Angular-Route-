@@ -1,22 +1,21 @@
 <section class="categories">
   <div class="container mx-auto">
-    <div class="flex items-center">
-      <img src="/images/category.png" class="w-10 me-1" alt="" />
-      <h2 class="text-2xl text-black-01 font-bold py-10 dark:text-white">
-        Categories
-      </h2>
+    <div class="title text-center">
+      <p class="text-black-01 pt-10 pb-5 dark:text-white">
+        Explore Our Categories – Find What You Love!
+      </p>
     </div>
     <div class="flex">
       @for (category of categoriesList(); track $index) {
       <div
-        class="category relative flex-1 hover:flex-[5] m-1 transition-all duration-500 ease-in-out"
+        class="category relative flex-1 hover:flex-[18] smd:hover:flex-[10] mmd:hover:flex-[12] lg:hover:flex-[5] m-1 transition-all duration-500 ease-in-out"
       >
         <img [src]="category.image" class="w-full h-96 object-cover" alt="" />
         <div
-          class="layer absolute top-0 start-0 w-full h-full flex items-center justify-center bg-black/60 transition-all duration-500 hover:bg-black/20 group dark:bg-white/20 dark:hover:bg-white/20"
+          class="layer py-10 absolute top-0 start-0 w-full h-full flex items-center justify-center bg-black/60 transition-all duration-500 hover:bg-black/20 group dark:bg-white/20 dark:hover:bg-white/20"
         >
           <p
-            class="text-white font-bold text-xl -rotate-90 text-nowrap group-hover:scale-125 transition-all duration-[0.4s] group-hover:rotate-0 dark:text-black-01"
+            class="text-white font-bold text-[16px] md:text-[18px] lg:text-xl -rotate-90 text-nowrap group-hover:scale-125 transition-all duration-[0.4s] group-hover:rotate-0 dark:text-black-01"
           >
             {{ category.name }}
           </p>

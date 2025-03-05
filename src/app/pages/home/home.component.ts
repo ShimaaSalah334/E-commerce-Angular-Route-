@@ -36,13 +36,13 @@ export class HomeComponent implements OnInit {
     ],
     responsive: {
       0: {
-        items: 1,
-      },
-      400: {
         items: 2,
       },
+      400: {
+        items: 4,
+      },
       740: {
-        items: 3,
+        items: 5,
       },
       940: {
         items: 7,

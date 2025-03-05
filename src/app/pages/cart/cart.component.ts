@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
 })
 export class CartComponent implements OnInit {
   cartData: ICart = {} as ICart
-  cartId: WritableSignal<string> = signal('');
+  cartId: string = "";
   numberOfCartItems = computed(() => this.cart.cartItems())
   constructor(private cart: CartService) { }
   ngOnInit(): void {
@@ -23,7 +23,7 @@ export class CartComponent implements OnInit {
     this.cart.getCart().subscribe({
       next: (res) => {
         this.cartData = res.data
-        this.cartId.set(res.cartId)
+        this.cartId = res.cartId
         this.cart.cartItems.set(res.numOfCartItems)
 
         console.log(res);

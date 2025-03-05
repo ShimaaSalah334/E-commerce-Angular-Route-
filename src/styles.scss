@@ -101,7 +101,7 @@
     align-items: center;
     justify-content: space-between;
     position: relative;
-    padding: 0px 40px;
+    padding: 0px 0px;
     .owl-nav {
       display: flex;
       justify-content: space-between;
@@ -112,10 +112,10 @@
         opacity: 0;
       }
       .owl-next {
-        margin-right: 40px;
+        margin-right: -20px;
       }
       .owl-prev {
-        margin-left: -20px;
+        margin-left: -25px;
       }
 
       [class*="owl-"] {

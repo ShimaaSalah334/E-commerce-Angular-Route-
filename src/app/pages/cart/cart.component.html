@@ -1,4 +1,4 @@
-<section class="cart py-7 px-8">
+<section class="cart py-7 px-0 md:px-4">
   <div class="container mx-auto">
     <div
       class="title flex items-center justify-between text-black-01 font-semibold p-3 rounded-xl bg-gray-250/60 border mb-6 dark:text-white dark:bg-black-03/60 dark:border-black-04"
@@ -14,11 +14,11 @@
             d="M7 18C5.9 18 5.01 18.9 5.01 20C5.01 21.1 5.9 22 7 22C8.1 22 9 21.1 9 20C9 18.9 8.1 18 7 18ZM1 2V4H3L6.6 11.59L5.25 14.04C5.09 14.32 5 14.65 5 15C5 16.1 5.9 17 7 17H19V15H7.42C7.28 15 7.17 14.89 7.17 14.75L7.2 14.63L8.1 13H15.55C16.3 13 16.96 12.59 17.3 11.97L20.88 5.48C20.96 5.34 21 5.17 21 5C21 4.45 20.55 4 20 4H5.21L4.27 2H1ZM17 18C15.9 18 15.01 18.9 15.01 20C15.01 21.1 15.9 22 17 22C18.1 22 19 21.1 19 20C19 18.9 18.1 18 17 18Z"
           />
         </svg>
-        <h2 class="text-xl">Shopping Cart</h2>
+        <h2 class="text-sm ssm:text-xl">Shopping Cart</h2>
       </div>
 
       <p
-        class="bg-primary-500/60 py-0.5 px-4 rounded-xl dark:bg-primary-500 dark:text-black-03"
+        class="text-sm ssm:text-[16px] bg-primary-500/60 py-0.5 px-4 rounded-xl dark:bg-primary-500 dark:text-black-03"
       >
         @if(numberOfCartItems() >=2 || numberOfCartItems() === 0){
         {{ numberOfCartItems() }} items } @else{ {{ numberOfCartItems() }} item
@@ -34,13 +34,15 @@
         <div class="card-img w-2/12">
           <img
             [src]="product.product.imageCover"
-            class="w-full h-40 object-cover rounded-s-xl"
+            class="w-full ssm:h-40 smd:h-auto md:h-40 object-cover rounded-s-xl"
             alt=""
           />
         </div>
         <div class="card-body w-7/12">
           <div class="flex items-center">
-            <h3 class="text-black-01 font-semibold me-2 mb-2 dark:text-white">
+            <h3
+              class="text-sm ssm:text-[16px] text-black-01 font-semibold me-2 mb-2 dark:text-white"
+            >
               {{ product.product.title }}
             </h3>
           </div>
@@ -54,22 +56,24 @@
             </p>
           </div>
         </div>
-        <div class="line w-0.5 h-2/3 absolute bg-gray-450 end-[22%]"></div>
         <div
-          class="card-footer py-3 flex flex-col justify-center font-semibold text-center w-3/12"
+          class="line w-0.5 h-2/3 absolute bg-gray-450 end-[30%] ssm:end-[22%] smd:end-[26%] md:end-[22%]"
+        ></div>
+        <div
+          class="card-footer py-3 flex flex-col justify-center font-semibold text-center w-4/12 ssm:w-3/12"
         >
           <div class="flex items-center justify-center space-x-2 mb-4">
             <button
-              class="bg-primary-500 text-black-01 h-7 px-2 text-[18px] rounded-lg"
+              class="bg-primary-500 text-black-01 h-6 ssm:h-7 px-2 text-sm ssm:text-[18px] rounded-lg"
               (click)="updateQuantity(product.product._id, product.count + 1)"
             >
               <i class="fa-solid fa-plus mt-1.5"></i>
             </button>
-            <p class="to-black-01 text-[18px] dark:text-white">
+            <p class="to-black-01 text-sm ssm:text-[18px] dark:text-white">
               {{ product.count }}
             </p>
             <button
-              class="bg-primary-500 text-black-01 h-7 px-2 text-[18px] rounded-lg"
+              class="bg-primary-500 text-black-01 h-6 ssm:h-7 px-2 text-sm ssm:text-[18px] rounded-lg"
               (click)="updateQuantity(product.product._id, product.count - 1)"
             >
               <i class="fa-solid fa-minus mt-1.5"></i>
@@ -81,10 +85,10 @@
           </div>
         </div>
         <div
-          class="remove-card transition-all duration-700 flex items-center justify-center absolute top-0 -end-2 -translate-y-1/2 bg-slate-300 text-red-500 rounded-full w-6 h-6 dark:bg-white"
+          class="remove-card transition-all duration-700 flex items-center justify-center absolute top-0 -end-2 smd:-top-0.5 md:-top-0 -translate-y-1/2 bg-slate-300 text-red-500 rounded-full w-5 h-5 ssm:w-6 ssm:h-6 smd:w-5 smd:h-5 md:w-6 md:h-6 dark:bg-white"
         >
           <button (click)="removeItem(product.product._id)">
-            <i class="fa-solid fa-xmark"></i>
+            <i class="fa-solid fa-xmark text-sm ssm:text-[16px]"></i>
           </button>
         </div>
       </div>
@@ -109,11 +113,11 @@
     <div
       class="empty-cart flex flex-col justify-center items-center text-center"
     >
-      <img src="/images/empty-cart.png" class="w-1/3" alt="" />
-      <h2 class="text-black-01 font-semibold text-2xl mb-2">
+      <img src="/images/empty-cart.png" class="w-[30%]" alt="" />
+      <h2 class="text-black-01 font-semibold text-2xl mb-2 dark:text-white">
         Your cart is empty!
       </h2>
-      <p class="text-gray-450 text-xl w-1/2">
+      <p class="text-gray-450 text-xl w-1/2 dark:text-gray-400">
         Looks like you have not added anything to your cart. Go ahead & explore
         top categories
       </p>

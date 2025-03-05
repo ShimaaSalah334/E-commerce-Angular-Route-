@@ -1,9 +1,11 @@
-<section class="details pt-9">
-  <div class="container mx-auto flex gap-10">
-    <div class="product-img w-6/12">
+<section class="details pt-9 px-2 smd:px-5 md:px-10 pb-5 md:pt-0 lmd:pt-8">
+  <div
+    class="container mx-auto flex flex-wrap gap-7 md:items-center lg:gap-0 lg:items-stretch"
+  >
+    <div class="product-img w-full lg:w-6/12">
       <img
         [src]="productData.imageCover"
-        class="w-11/12 h-[58%] object-cover mx-auto rounded-2xl"
+        class="w-10/12 h-96 lmd:w-9/12 lg:w-11/12 lg:h-[58%] object-cover mx-auto rounded-2xl"
         alt=""
         #coverImage
       />
@@ -13,7 +15,7 @@
           <ng-template carouselSlide>
             <img
               [src]="image"
-              class="w-36 h-36 object-cover rounded-2xl pointer-events-auto z-50 cursor-pointer"
+              class="w-20 h-36 object-cover rounded-2xl pointer-events-auto z-50 cursor-pointer"
               alt=""
               (click)="changeImg($event)"
             />
@@ -22,14 +24,16 @@
         </owl-carousel-o>
       </div>
     </div>
-    <div class="product-data w-6/12 px-3">
+    <div class="product-data w-full lg lg:w-6/12 px-3">
       <div class="brand mb-1">
         <p class="text-gray-450 font-medium">
           {{ productData.brand?.name }}
         </p>
       </div>
       <div class="title mb-3.5">
-        <p class="text-black font-semibold text-2xl dark:text-white">
+        <p
+          class="text-black font-semibold text-xl ssm:text-2xl dark:text-white"
+        >
           {{ productData.title }}
         </p>
       </div>
@@ -38,7 +42,9 @@
       </div>
       <div class="flex justify-between mb-6">
         <div class="price">
-          <p class="text-black font-bold text-xl dark:text-white">
+          <p
+            class="text-black font-bold text-[16px] ssm:text-xl dark:text-white"
+          >
             <span class="font-normal me-2">Price : </span
             >{{ productData.price | currency : "EGP " }}
           </p>
@@ -51,7 +57,9 @@
         </div>
       </div>
       <div class="quantity">
-        <div class="flex items-center justify-between">
+        <div
+          class="flex items-center justify-center flex-wrap gap-5 xssm:justify-between"
+        >
           <div class="flex items-center space-x-2">
             <button class="bg-primary-500 text-black-01 h-7 px-2 text-[18px]">
               <i class="fa-solid fa-plus mt-1.5"></i>

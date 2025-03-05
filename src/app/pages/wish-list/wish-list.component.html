@@ -1,9 +1,17 @@
 <section class="wish-list pt-5">
-  <div class="container">
+  <div class="container mx-auto">
+    @if(!searchTerm() && wishListData().length>0){
+    <div class="title">
+      <p class="text-black-01 py-5 dark:text-white">
+        Your Wishlist – Save Your Favorites for Later!
+      </p>
+    </div>
+    }
+
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       @for (product of wishListData() | search:searchTerm(); track $index) {
       <div
-        class="w-full shadow-sm rounded-lg border border-gray-150 relative dark:bg-transparent dark:border-none pb-2 group/container"
+        class="w-full ssm:w-4/5 ssm:mx-auto smd:w-3/4 mmd:w-full shadow-sm rounded-lg border border-gray-150 relative dark:bg-transparent dark:border-none pb-2 group/container"
       >
         <div
           class="icon bg-gray-250 w-9 h-9 rounded-full flex items-center justify-center absolute top-2 end-2 z-50 cursor-pointer"
@@ -103,12 +111,16 @@
 
       <div class="not-found col-span-full mx-auto text-center py-20">
         <div class="not-found-icon mb-6">
-          <img src="images/not-found.png" class="w-1/4 mx-auto" alt="" />
+          <img
+            src="images/not-found.png"
+            class="w-1/4 mx-auto dark:brightness-150"
+            alt=""
+          />
         </div>
-        <h3 class="text-xl font-semibold text-gray-800 mb-4">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4 dark:text-gray-400">
           No Results Found
         </h3>
-        <p class="text-gray-600 mb-6">
+        <p class="text-gray-600 mb-6 dark:text-gray-450">
           We couldn't find any products matching
           <span class="font-bold">"{{ searchTerm() }}"</span>.
         </p>
@@ -116,12 +128,21 @@
       }@else {
       <div class="empty-wishlist col-span-full text-center mx-auto py-20">
         <div class="empty-wishlist-icon mb-6">
-          <img src="images/wishlist.png" class="w-1/4 mx-auto" alt="" />
+          <img
+            src="images/wishlist.png"
+            class="w-1/4 mx-auto dark:hidden"
+            alt=""
+          />
+          <img
+            src="images/wishlist-dark.png"
+            class="w-1/4 mx-auto hidden dark:block"
+            alt=""
+          />
         </div>
-        <h3 class="text-xl font-semibold text-gray-800 mb-4">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4 dark:text-gray-400">
           Your Wishlist is Empty
         </h3>
-        <p class="text-gray-600 mb-4">
+        <p class="text-gray-600 mb-4 dark:text-gray-450">
           You haven't added any products to your wishlist yet.
         </p>
         <a

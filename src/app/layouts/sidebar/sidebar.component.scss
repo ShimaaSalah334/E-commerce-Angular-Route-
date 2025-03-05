@@ -30,8 +30,9 @@
     color: #ffc831;
   }
 }
+
 #accordion-open-heading-1 .bg-gray-100 {
-  background-color: #eff2f5;
+  background-color: transparent;
   &::before {
     content: "";
     position: absolute;

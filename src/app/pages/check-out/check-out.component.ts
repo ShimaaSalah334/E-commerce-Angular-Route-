@@ -18,14 +18,14 @@ import { IUser } from '../../core/interfaces/iuser';
 export class CheckOutComponent implements OnInit {
   ordersData: ICart = {} as ICart
   cashData: ICash = {} as ICash
-  cartId: WritableSignal<string> = signal('');
+  cartId: string = "";
   checkoutForm!: FormGroup
   userData: IUser = {} as IUser
-  @ViewChild('modal') m!: ElementRef
+  @ViewChild('modal') modal!: ElementRef
   constructor(private orders: OrdersService, private cart: CartService, private auth: AuthService, private activatedRoute: ActivatedRoute, private renderer2: Renderer2) { }
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((p) => {
-      this.cartId.set(p.get('id') as string)
+      this.cartId = p.get('id') as string
     })
     console.log(this.cartId);
     this.displayOrder()
@@ -50,9 +50,11 @@ export class CheckOutComponent implements OnInit {
   }
   submitOnline() {
     if (this.checkoutForm.valid) {
-      this.orders.onlinePayment(this.cartId(), this.checkoutForm.value).subscribe({
+      this.orders.onlinePayment(this.cartId, this.checkoutForm.value).subscribe({
         next: (res) => {
           window.open(res.session.url, "_self")
+          this.cart.cartItems.set(0)
+
         }
         , error: (err) => {
           console.log(err);
@@ -68,15 +70,17 @@ export class CheckOutComponent implements OnInit {
   submitCash() {
 
     if (this.checkoutForm.valid) {
-      this.orders.cashPayment(this.cartId(), this.checkoutForm.value).subscribe({
+      this.orders.cashPayment(this.cartId, this.checkoutForm.value).subscribe({
         next: (res) => {
           this.cashData = res.data
+          this.cart.cartItems.set(0)
           this.auth.decodeToken();
           this.userData = this.auth.userData
           console.log(this.auth.userData);
 
-          this.renderer2.removeClass(this.m.nativeElement, "hidden")
-          this.renderer2.addClass(this.m.nativeElement, "flex")
+          this.renderer2.removeClass(this.modal.nativeElement, "hidden")
+          this.renderer2.addClass(this.modal.nativeElement, "flex")
+          this.renderer2.addClass(document.body, "overflow-y-hidden");
 
 
 
@@ -92,5 +96,8 @@ export class CheckOutComponent implements OnInit {
     }
 
   }
+  showOverFlow() {
 
+    this.renderer2.removeClass(document.body, "overflow-y-hidden");
+  }
 }

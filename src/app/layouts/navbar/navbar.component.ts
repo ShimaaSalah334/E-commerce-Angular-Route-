@@ -1,9 +1,11 @@
 import { ProductsService } from './../../core/services/products.service';
-import { Component, computed, input, Input, InputSignal, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, computed, input, Input, InputSignal, OnInit, signal, WritableSignal, PLATFORM_ID, Inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 import { CartService } from '../../core/services/cart.service';
 import { FormsModule } from '@angular/forms';
+import { isPlatformBrowser } from '@angular/common';
+import { MyTranslateService } from '../../core/services/my-translate.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,9 +18,12 @@ export class NavbarComponent implements OnInit {
   searchTerm: WritableSignal<string> = signal("")
   numberOfCartItems = computed(() => this.cart.cartItems())
   isDarkMode: WritableSignal<boolean> = signal(false);
-  theme = localStorage['theme']
-  constructor(private auth: AuthService, private cart: CartService, private products: ProductsService) { }
+  theme: string = 'light';
+  constructor(private auth: AuthService, private cart: CartService, private products: ProductsService, private translate: MyTranslateService, @Inject(PLATFORM_ID) private _PLATFORM_ID: object) { }
   ngOnInit(): void {
+    if (isPlatformBrowser(this._PLATFORM_ID)) {
+      this.theme = localStorage['theme'] || 'light';
+    }
     const token = localStorage.getItem('userToken');
     if (token) {
       this.cart.getCart().subscribe({
@@ -43,6 +48,9 @@ export class NavbarComponent implements OnInit {
     this.products.setSearchTerm(this.searchTerm())
   }
   changeTheme(theme: string): void {
+    if (!isPlatformBrowser(this._PLATFORM_ID)) {
+      return;
+    }
     document.documentElement.classList.remove("light", "dark");
 
     switch (theme) {

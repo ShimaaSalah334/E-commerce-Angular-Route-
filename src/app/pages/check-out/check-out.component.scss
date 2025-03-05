@@ -1,0 +1,10 @@
+select option {
+  background-color: #f3f4f6; /* Background color */
+  color: #1f2937; /* Text color */
+}
+
+select option:hover,
+select option:focus {
+  background-color: #d1d5db; /* Hover/focus background color */
+  color: #111827; /* Hover/focus text color */
+}

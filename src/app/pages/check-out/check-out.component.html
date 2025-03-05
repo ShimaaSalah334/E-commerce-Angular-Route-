@@ -1,19 +1,31 @@
-<section class="check-out pe-10">
-  <div class="container mx-auto flex flex-wrap">
+<section class="check-out p-0 xl:pe-5">
+  <div class="container mx-auto flex flex-wrap gap-7 lg:gap-0">
     <div class="flex items-center w-full text-center py-10 justify-center">
-      <img src="images/secure-payment.png" class="w-14 me-2" alt="" />
-      <h2 class="text-black-01 font-bold text-3xl mb-4">Checkout</h2>
+      <img
+        src="images/secure-payment.png"
+        class="w-14 me-2 dark:hidden"
+        alt=""
+      />
+      <img
+        src="images/secure-payment-dark.png"
+        class="w-14 me-2 hidden dark:block"
+        alt=""
+      />
+
+      <h2 class="text-black-01 font-bold text-3xl mb-4 dark:text-white">
+        Checkout
+      </h2>
     </div>
-    <div class="checkout-form w-8/12">
+    <div class="checkout-form w-full lg:w-6/12 xl:w-8/12">
       <form [formGroup]="checkoutForm">
         <div class="relative w-11/12 mx-auto">
-          <label for="phone" class="text-gray-650 dark:text-gray-400">
+          <label for="phone" class="text-gray-650 dark:text-white">
             <i class="fa-solid fa-phone me-1"></i> Phone</label
           >
           <input
             type="tel"
             id="phone"
-            class="block w-full px-2.5 py-4 mt-2 text-sm text-black-01 rounded-lg bg-gray-250 focus:border focus:border-primary-500 dark:bg-gray-700 border-0 appearance-none dark:text-white dark:focus:border-blue-500 focus:outline-none focus:ring-0 peer"
+            class="block w-full px-2.5 py-4 mt-2 text-sm text-black-01 rounded-lg bg-gray-250 border-transparent transition-colors duration-300 focus:border-primary-500 dark:bg-gray-850 border appearance-none dark:text-white focus:outline-none focus:ring-0 peer"
             placeholder=" "
             formControlName="phone"
           />
@@ -47,13 +59,13 @@
         </div>
         }
         <div class="relative w-11/12 mx-auto mt-4">
-          <label for="city" class="text-gray-650 dark:text-gray-400"
+          <label for="city" class="text-gray-650 dark:text-white"
             ><i class="fa-solid fa-city me-1"></i>City</label
           >
           <input
             type="text"
             id="city"
-            class="block w-full px-2.5 py-4 mt-2 text-sm text-black-01 rounded-lg bg-gray-250 focus:border focus:border-primary-500 dark:bg-gray-700 border-0 appearance-none dark:text-white dark:focus:border-blue-500 focus:outline-none focus:ring-0 peer"
+            class="block w-full px-2.5 py-4 mt-2 text-sm text-black-01 rounded-lg bg-gray-250 border-transparent transition-colors duration-300 focus:border-primary-500 dark:bg-gray-850 border appearance-none dark:text-white focus:outline-none focus:ring-0 peer"
             placeholder=""
             formControlName="city"
           />
@@ -87,14 +99,14 @@
         </div>
         }
         <div class="relative w-11/12 mx-auto mt-4">
-          <label for="" class="text-gray-650 dark:text-gray-400">
+          <label for="" class="text-gray-650 dark:text-white">
             <i class="fa-solid fa-circle-info me-1"></i> Details</label
           >
           <textarea
             id="details"
             placeholder=""
             formControlName="details"
-            class="block w-full px-2.5 py-4 mt-2 text-sm text-black-01 rounded-lg bg-gray-250 focus:border focus:border-primary-500 dark:bg-gray-700 border-0 appearance-none dark:text-white dark:focus:border-blue-500 focus:outline-none focus:ring-0 peer"
+            class="block w-full px-2.5 py-4 mt-2 text-sm text-black-01 rounded-lg bg-gray-250 focus:border-primary-500 transition-colors duration-300 dark:bg-gray-850 border border-transparent appearance-none dark:text-white focus:outline-none focus:ring-0 peer"
           ></textarea>
         </div>
         @let detailsControl=checkoutForm.controls['details'];
@@ -127,13 +139,19 @@
         }
       </form>
     </div>
-    <div class="orders w-4/12 bg-gray-250 pt-4 pb-7 rounded-lg">
-      <h3 class="text-black-01 font-semibold text-xl px-4 mb-4">Your Order</h3>
+    <div
+      class="orders w-full ssm:w-[90%] smd:w-[85%] mmd:w-full md:w-[85%] lmd:w-4/5 mx-auto lg:mx-0 lg:w-6/12 xl:w-4/12 bg-gray-250 pt-4 pb-7 rounded-lg dark:bg-black-03"
+    >
+      <h3 class="text-black-01 font-semibold text-xl px-4 mb-4 dark:text-white">
+        Your Order
+      </h3>
       @for (order of ordersData.products; track $index) {
       <div class="order flex items-center gap-5 px-4 mb-5">
-        <img [src]="order.product.imageCover" class="w-16" alt="" />
+        <img [src]="order.product.imageCover" class="w-20 xl:w-16" alt="" />
         <div class="flex flex-col w-full">
-          <p class="text-black-01 font-semibold text-sm mb-5">
+          <p
+            class="text-black-01 font-semibold text-sm mb-5 dark:text-gray-400"
+          >
             {{ order.product.title }}
           </p>
           <div class="flex items-center justify-between">
@@ -141,19 +159,20 @@
               {{ order.price | currency : " EGP " }}
             </p>
             <select
-              id="countries"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 py-1 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg py-1 px-2 dark:bg-gray-850 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
             >
-              <option>{{ order.count }}</option>
+              <option class="bg-transparent">{{ order.count }}</option>
             </select>
           </div>
         </div>
       </div>
       }
-      <div class="line bg-gray-300 w-full h-0.5 mt-14 mb-5"></div>
+      <div
+        class="line bg-gray-300 w-full h-0.5 mt-14 mb-5 dark:bg-gray-650"
+      ></div>
       <div class="total-price flex items-center justify-between px-4 mb-10">
-        <p class="text-black-01 font-semibold text-xl">Total</p>
-        <p class="text-black-01 font-semibold text-xl">
+        <p class="text-black-01 font-semibold text-xl dark:text-white">Total</p>
+        <p class="text-black-01 font-semibold text-xl dark:text-white">
           {{ ordersData.totalCartPrice | currency : " EGP " }}
         </p>
       </div>
@@ -182,15 +201,15 @@
 <!-- Main modal -->
 <div
   tabindex="-1"
-  class="overflow-x-hidden fixed top-0 right-0 left-0 z-50 hidden justify-center items-center w-full md:inset-0 max-h-full bg-black/50"
+  class="overflow-x-hidden fixed top-0 right-0 left-0 z-50 hidden justify-center items-center w-full md:inset-0 h-full bg-black/50 dark:bg-black/70"
   #modal
 >
   <div class="relative p-4 max-h-full">
     <!-- Modal content -->
-    <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+    <div class="relative bg-white rounded-lg shadow-sm dark:bg-black-03">
       <!-- Modal body -->
 
-      <div class="p-4 md:p-5 space-y-4 text-black-01">
+      <div class="p-4 md:p-5 space-y-4 text-black-01 text-sm ssm:text-[16px]">
         <h3
           class="text-xl text-center mx-auto font-semibold dark:text-white pb-5 w-3/4"
         >
@@ -198,35 +217,48 @@
         </h3>
         @for (item of ordersData.products; track $index) {
         <div class="flex items-center justify-between">
-          <p class="text-black-01 max-w-lg">{{ item.product.title }}</p>
-          <p class="text-black-01">{{ item.price | currency : "EGP " }}</p>
+          <p class="text-black-01 max-w-lg dark:text-white">
+            {{ item.product.title }}
+          </p>
+          <p class="text-black-01 dark:text-gray-450">
+            {{ item.price | currency : "EGP " }}
+          </p>
         </div>
         }
         <div class="tax-price flex items-center justify-between">
-          <p>Tax</p>
-          <p>{{ cashData.taxPrice | currency : "EGP " }}</p>
+          <p class="dark:text-white">Tax</p>
+          <p class="dark:text-gray-450">
+            {{ cashData.taxPrice | currency : "EGP " }}
+          </p>
         </div>
         <div class="shipping-price flex items-center justify-between">
-          <p class="text-black-01">Shipping</p>
-          <p>{{ cashData.shippingPrice | currency : "EGP " }}</p>
+          <p class="text-black-01 dark:text-white">Shipping</p>
+          <p class="dark:text-gray-450">
+            {{ cashData.shippingPrice | currency : "EGP " }}
+          </p>
         </div>
         <div
           class="total-price flex items-center justify-between font-bold pb-4"
         >
-          <p>Total</p>
-          <p>{{ cashData.totalOrderPrice | currency : "EGP " }}</p>
+          <p class="dark:text-white">Total</p>
+          <p class="dark:text-white">
+            {{ cashData.totalOrderPrice | currency : "EGP " }}
+          </p>
         </div>
-        <div class="line bg-gray-300 h-0.5 w-3/4 mx-auto"></div>
+        <div
+          class="line bg-gray-300 h-0.5 w-3/4 mx-auto dark:bg-gray-450"
+        ></div>
         <div class="payment-method flex items-center justify-between pt-5">
-          <p class="font-bold">Payment Method</p>
-          <p>{{ cashData.paymentMethodType }}</p>
+          <p class="font-bold dark:text-white">Payment Method</p>
+          <p class="dark:text-white">{{ cashData.paymentMethodType }}</p>
         </div>
         <div class="adress flex items-center justify-between mb-3">
-          <p class="font-bold">Shipping Address</p>
-          <p>{{ cashData.shippingAddress?.city }}</p>
+          <p class="font-bold dark:text-white">Shipping Address</p>
+          <p class="dark:text-white">{{ cashData.shippingAddress?.city }}</p>
         </div>
         <button
           routerLink="/allorders"
+          (click)="showOverFlow()"
           type="button"
           class="text-black-01 w-full disabled:bg-primary-400 bg-primary-400 hover:bg-primary-500 transition-all duration-300 font-medium px-5 py-2.5"
         >

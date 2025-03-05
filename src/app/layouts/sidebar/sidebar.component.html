@@ -3,7 +3,7 @@
   data-drawer-toggle="logo-sidebar"
   aria-controls="logo-sidebar"
   type="button"
-  class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+  class="inline-flex items-center absolute -start-2 top-1 p-2 ps-0 pt-0 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
 >
   <span class="sr-only">Open sidebar</span>
   <svg
@@ -20,10 +20,9 @@
     ></path>
   </svg>
 </button>
-
 <aside
   id="logo-sidebar"
-  class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+  class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 rtl:right-0"
   aria-label="Sidebar"
 >
   <div class="h-full py-4 overflow-y-auto bg-gray-30 dark:bg-black-03 relative">
@@ -104,11 +103,14 @@
       </li>
       <!---Contact Collapse--->
       <li>
-        <div id="accordion-open" data-accordion="open">
-          <h2 id="accordion-open-heading-1">
+        <div id="accordion-open " data-accordion="open">
+          <h2
+            id="accordion-open-heading-1"
+            class="dark:hover:bg-black-04 hover:rounded-e-full transition-all duration-300"
+          >
             <button
               type="button"
-              class="flex items-center justify-between w-full p-2 ps-8 relative rtl:text-right text-gray-650 hover:bg-gray-250 hover:rounded-e-full dark:text-gray-350 dark:hover:bg-black-04 gap-3 rounded-e-full transition-all duration-300"
+              class="flex items-center justify-between w-full p-2 ps-8 relative rtl:text-right text-gray-650 hover:bg-gray-250 dark:text-gray-350 dark:hover:bg-black-04 gap-3 rounded-e-full transition-all duration-300"
               data-accordion-target="#accordion-open-body-1"
               aria-expanded="false"
               aria-controls="accordion-open-body-1"
@@ -146,28 +148,28 @@
               <li class="py-1">
                 <a
                   href=""
-                  class="flex items-center justify-center w-7 h-7 rounded-full text-center text-gray-30 bg-gray-650 hover:bg-transparent hover:text-primary-500 hover:text-xl transition-all duration-300 dark:text-gray-350"
+                  class="flex items-center justify-center w-7 h-7 rounded-full text-center text-gray-30 bg-gray-650 hover:bg-transparent hover:text-primary-500 hover:text-xl transition-all duration-300 dark:bg-gray-850 dark:text-gray-350"
                   ><i class="fa-brands fa-facebook"></i
                 ></a>
               </li>
               <li class="py-1">
                 <a
                   href=""
-                  class="flex items-center justify-center w-7 h-7 rounded-full text-center text-gray-30 bg-gray-650 hover:bg-transparent hover:text-primary-500 hover:text-xl transition-all duration-300 dark:text-gray-350"
+                  class="flex items-center justify-center w-7 h-7 rounded-full text-center text-gray-30 bg-gray-650 hover:bg-transparent hover:text-primary-500 hover:text-xl transition-all duration-300 dark:bg-gray-850 dark:text-gray-350"
                   ><i class="fa-brands fa-instagram"></i
                 ></a>
               </li>
               <li class="py-1">
                 <a
                   href=""
-                  class="flex items-center justify-center w-7 h-7 rounded-full text-center text-gray-30 bg-gray-650 hover:bg-transparent hover:text-primary-500 hover:text-xl transition-all duration-300 dark:text-gray-350"
+                  class="flex items-center justify-center w-7 h-7 rounded-full text-center text-gray-30 bg-gray-650 hover:bg-transparent hover:text-primary-500 hover:text-xl transition-all duration-300 dark:bg-gray-850 dark:text-gray-350"
                   ><i class="fa-brands fa-twitter"></i
                 ></a>
               </li>
               <li class="py-1">
                 <a
                   href=""
-                  class="flex items-center justify-center w-7 h-7 rounded-full text-center text-gray-30 bg-gray-650 hover:bg-transparent hover:text-primary-500 hover:text-xl transition-all duration-300 dark:text-gray-350"
+                  class="flex items-center justify-center w-7 h-7 rounded-full text-center text-gray-30 bg-gray-650 hover:bg-transparent hover:text-primary-500 hover:text-xl transition-all duration-300 dark:bg-gray-850 dark:text-gray-350"
                   ><i class="fa-brands fa-linkedin"></i
                 ></a>
               </li>
@@ -195,7 +197,7 @@
   </div>
 </aside>
 
-<div class="py-4 px-3 sm:ml-64">
+<div class="py-4 px-3 sm:ml-64 ltr:sm:ml-64 rtl:sm:mr-64">
   <app-navbar [isLogin]="true"></app-navbar>
   <router-outlet></router-outlet>
 </div>

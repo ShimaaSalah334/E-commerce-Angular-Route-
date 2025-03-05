@@ -19,6 +19,13 @@ module.exports = {
         "gray-650": "#637381",
         "gray-850": "#212B36",
       },
+      screens: {
+        lmd: "840px",
+        mmd: "640px",
+        smd: "600px",
+        ssm: "480px",
+        xssm: "400px",
+      },
     },
   },
   plugins: [require("flowbite/plugin")],
