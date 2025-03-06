@@ -87,8 +87,10 @@ export class NavbarComponent implements OnInit {
         break;
     }
   }
+  lang: string = 'en'; // Default language
+
   changeLang() {
-    const lang = localStorage.getItem('lang') == 'en' ? 'ar' : 'en';
-    this.translate.changeLang(lang);
+    this.lang = localStorage.getItem('lang') == 'en' ? 'ar' : 'en';
+    this.translate.changeLang(this.lang);
   }
 }
