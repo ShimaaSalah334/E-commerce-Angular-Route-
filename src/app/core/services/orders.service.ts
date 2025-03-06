@@ -9,14 +9,11 @@ import { Observable } from 'rxjs';
 export class OrdersService {
   baseUrl: string = environment.baseUrl;
   redirectUrl: string = environment.redirectUrl;
-  successUrl: string = environment.redirectUrl;
-
 
   constructor(private httpClient: HttpClient) { }
   onlinePayment(cartId: string, formData: any): Observable<any> {
-    return this.httpClient.post(`${this.baseUrl}/api/v1/orders/checkout-session/${cartId}`, {
-      "shippingAddress": formData,
-      success_url: this.successUrl,
+    return this.httpClient.post(`${this.baseUrl}/api/v1/orders/checkout-session/${cartId}?url=${this.redirectUrl}`, {
+      "shippingAddress": formData
     },
     )
   }
