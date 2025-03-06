@@ -3,10 +3,11 @@ import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validator
 import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { CarouselComponent } from "../../shared/components/ui/carousel/carousel.component";
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule, CarouselComponent],
+  imports: [ReactiveFormsModule, CarouselComponent, TranslatePipe],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })

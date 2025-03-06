@@ -1,0 +1,173 @@
+{
+
+    "navbar": {
+      "search": {
+        "placeholder": "Search"
+      },
+      "languages": {
+        "current": "En",
+        "options": {
+          "english": {
+            "label": "English",
+            "code": "En"
+          },
+          "arabic": {
+            "label": "Arabic",
+            "code": "Ar"
+          }
+        }
+      },
+
+      "auth": {
+        "signUp": "Sign Up",
+        "login": "Login"
+      }
+    },
+      "sidebar": {
+        "menu": {
+          "home": "Home",
+          "products": "Products",
+          "categories": "Categories",
+          "brands": "Brands",
+          "wishList": "Wish-List",
+          "contact": "Contact",
+          "logout": "Sign out"
+        }
+      },
+    "signup": {
+      "title": "Sign Up",
+      "welcomeMessage": "Sign up to enjoy a seamless shopping experience, tailored just for you.",
+      "name": {
+        "label": "Name",
+        "error": {
+          "required": "Name is required. Please enter your name.",
+          "minlength": "Name must be at least 3 characters long."
+        }
+      },
+      "email": {
+        "label": "Email",
+        "error": {
+          "required": "Email is required. Please enter your email address.",
+          "pattern": "Please enter a valid email address (e.g., example@domain.com)."
+        }
+      },
+      "password": {
+        "label": "Password",
+        "error": {
+          "required": "Password is required. Please enter your password.",
+          "pattern": "Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, one digit, and one special character (#?!@$%^&*-)."
+        }
+      },
+      "confirmPassword": {
+        "label": "Confirm Password",
+        "error": {
+          "required": "Confirm password is required.",
+          "mismatch": "Passwords do not match."
+        }
+      },
+      "phone": {
+        "label": "Phone",
+        "error": {
+          "required": "Phone number is required. Please enter your phone number.",
+          "pattern": "Please enter a valid Egyptian phone number (e.g., 01012345678)."
+        }
+      },
+      "submitButton": {
+        "text": "Sign Up"
+      }
+    },
+
+  "login": {
+    "title": "Login",
+    "welcomeMessage": "Welcome Back! Please sign in to continue shopping.",
+    "email": {
+      "label": "Email",
+      "error": {
+        "required": "Email is required. Please enter your email address."
+      }
+    },
+    "password": {
+      "label": "Password",
+      "error": {
+        "required": "Password is required. Please enter your password."
+      }
+    },
+    "submitButton": {
+      "text": "Login"
+      },
+    "forgetPassword": "Forget Password?"
+  },
+    "forgotPassword": {
+      "step1": {
+        "backToLogin": "Back to login",
+        "title": "Forgot your password?",
+        "description": "Don’t worry, happens to all of us. Enter your email below to recover your password.",
+        "email": {
+          "label": "Email",
+          "error": {
+            "required": "Email is required. Please enter your email address.",
+            "pattern": "Please enter a valid email address (e.g., example@domain.com)."
+          }
+        },
+        "submitButton": {
+          "text": "Submit"
+        }
+      },
+      "step2": {
+        "backToLogin": "Back to login",
+        "title": "Verify code",
+        "description": "An authentication code has been sent to your email.",
+        "code": {
+          "label": "Enter Code",
+          "error": {
+            "required": "Code is required. Please enter the 6-digit code.",
+            "pattern": "Please enter a valid 6-digit code."
+          }
+        },
+        "submitButton": {
+          "text": "Verify"        }
+      },
+      "step3": {
+        "backToLogin": "Back to login",
+        "title": "Set a password",
+        "description": "Your previous password has been reset. Please set a new password for your account.",
+        "email": {
+          "label": "Email",
+          "error": {
+            "required": "Email is required. Please enter your email address.",
+            "pattern": "Please enter a valid email address (e.g., example@domain.com)."
+          }
+        },
+        "password": {
+          "label": "Password",
+          "error": {
+            "required": "Password is required. Please enter your password.",
+            "pattern": "Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, one digit, and one special character (#?!@$%^&*-)."
+          }
+        },
+        "submitButton": {
+          "text": "Set Password",
+          "loading": "Loading..."
+        }
+      }
+    },
+      "notFound": {
+        "title": "No Results Found",
+        "description": "We couldn't find any products matching"
+      },
+
+      "emptyWishlist": {
+        "title": "Your Wishlist is Empty",
+        "description": "You haven't added any products to your wishlist yet.",
+        "exploreButton": "Explore Products"
+      },
+
+        "emptyCart": {
+          "title": "Your cart is empty!",
+          "description": "Looks like you have not added anything to your cart. Go ahead & explore top categories.",
+          "shopButton": "Shop our products"
+        }
+
+
+
+}

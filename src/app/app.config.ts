@@ -1,5 +1,5 @@
 import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withHashLocation } from '@angular/router';
 
 import { routes } from './app.routes';
 import {
@@ -26,6 +26,7 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch(), withInterceptors([headersInterceptor, errorsInterceptor, loadingScreenInterceptor])),
     provideAnimations(),
+    provideRouter(routes, withHashLocation()),
     provideToastr(),
     importProvidersFrom(NgxSpinnerModule),
     importProvidersFrom(TranslateModule.forRoot({

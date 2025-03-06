@@ -1,6 +1,6 @@
 import { ProductsService } from './../../core/services/products.service';
-import { ActivatedRoute } from '@angular/router';
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Component, ElementRef, OnInit, Renderer2, signal, ViewChild, WritableSignal } from '@angular/core';
 import { IProduct } from '../../core/interfaces/iproduct';
 import { CurrencyPipe } from '@angular/common';
 import { log } from 'console';
@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-details',
-  imports: [CurrencyPipe, CarouselModule],
+  imports: [CurrencyPipe, CarouselModule, RouterLink],
   templateUrl: './details.component.html',
   styleUrl: './details.component.scss'
 })
@@ -18,6 +18,9 @@ export class DetailsComponent implements OnInit {
   @ViewChild('coverImage') coverImage!: ElementRef;
   id: string = '';
   productData: IProduct = {} as IProduct;
+  relatedProducts: WritableSignal<IProduct[]> = signal([]);
+  allProducts: WritableSignal<IProduct[]> = signal([]);
+
   constructor(private activatedRoute: ActivatedRoute, private products: ProductsService, private cart: CartService, private toastr: ToastrService
     , private render2: Renderer2) { }
   customOptions: OwlOptions = {
@@ -46,6 +49,32 @@ export class DetailsComponent implements OnInit {
     },
     nav: true,
   };
+  customOptions2: OwlOptions = {
+    loop: false,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    dots: false,
+    margin: 10,
+    navSpeed: 700,
+    navText: ['<i class="fa-solid fa-angle-left text-gray-450" ></i>',
+      '<i class="fa-solid fa-angle-right text-gray-450"></i>',],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 4
+      }
+    },
+    nav: true
+  }
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe({
       next: (p) => {
@@ -54,6 +83,17 @@ export class DetailsComponent implements OnInit {
         this.displayProductDetails();
       }
     })
+    this.products.getProducts().subscribe({
+      next: (res) => {
+        this.allProducts.set(res.data);
+        console.log(res);
+        this.displayProductDetails();
+
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 
   displayProductDetails() {
@@ -61,6 +101,7 @@ export class DetailsComponent implements OnInit {
       next: (res) => {
         this.productData = res.data
         console.log(this.productData);
+        this.loadRelatedProducts(this.productData.category._id);
 
       }, error: (err) => {
         console.log(err);
@@ -93,5 +134,13 @@ export class DetailsComponent implements OnInit {
     }
 
   }
+  loadRelatedProducts(categoryId: string) {
 
+    // Filter products by category
+    const filteredProducts = this.allProducts().filter(
+      (product) => product.category._id === categoryId && product._id !== this.id
+    );
+
+    this.relatedProducts.set(filteredProducts);
+  }
 }

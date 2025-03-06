@@ -92,6 +92,16 @@
     }
   }
 }
+@media screen and (max-width: 840px) {
+  .signup {
+    .owl-theme {
+      height: 550px;
+      .owl-item {
+        height: 550px;
+      }
+    }
+  }
+}
 .images-slider {
   .owl-stage {
     padding-right: 0px;
@@ -122,6 +132,46 @@
         background-color: transparent;
         font-size: 20px;
         pointer-events: auto;
+        .disabled {
+          opacity: 0;
+        }
+      }
+    }
+  }
+}
+
+.related-products {
+  .owl-stage {
+    padding-right: 0px;
+  }
+  .owl-theme {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    .owl-nav {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      position: absolute;
+      pointer-events: none;
+      .disabled {
+        opacity: 0 !important;
+      }
+      .owl-next {
+        margin-right: -25px;
+      }
+      .owl-prev {
+        margin-left: -25px;
+      }
+
+      [class*="owl-"] {
+        background-color: transparent;
+        font-size: 25px;
+        pointer-events: auto;
+        &:hover {
+          background: transparent;
+        }
         .disabled {
           opacity: 0;
         }

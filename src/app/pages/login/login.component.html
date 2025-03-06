@@ -1,24 +1,26 @@
-<section class="login py-16 bg-gray-250 dark:bg-black-01">
-  <div class="container">
+<section class="login pt-20 mmd:pt-[70px] pb-16 dark:bg-black-01">
+  <div class="container mx-auto px-4">
     <div
-      class="grid grid-cols-2 w-3/4 mx-auto bg-white shadow-xl rounded-3xl dark:bg-black-03 dark:shadow-black"
+      class="grid grid-cols-1 mmd:grid-cols-2 items-center w-full smd:w-3/4 mmd:w-full lg:w-10/12 xl:w-3/4 mx-auto bg-white shadow-xl rounded-3xl dark:bg-black-03 dark:shadow-black"
     >
-      <div class="login-form flex flex-col pt-16 px-8">
-        <div class="title mb-14">
+      <div
+        class="login-form flex flex-col self-start py-5 ssm:py-10 mmd:py-0 mmd:pb-5 mmd:mt-7 md:pb-5 md:mt-0 md:pt-14 px-8"
+      >
+        <div class="title mb-5 lmd:mb-14">
           <h2
             class="font-semibold uppercase text-xl text-black-01 mb-4 dark:text-white"
           >
             <i
               class="fa-solid fa-right-to-bracket text-primary-500 text-2xl me-3"
             ></i>
-            Login
+            {{ "login.title" | translate }}
           </h2>
           <p class="text-sm text-gray-400 text-start dark:text-gray-450">
-            Welcome Back! Please sign in to continue shopping.
+            {{ "login.welcomeMessage" | translate }}
           </p>
         </div>
         <form [formGroup]="loginForm" (ngSubmit)="submit()">
-          <div class="relative w-11/12 mx-auto">
+          <div class="relative w-full md:w-11/12 mx-auto">
             <input
               type="email"
               id="email"
@@ -30,7 +32,7 @@
               for="email"
               class="absolute text-sm text-gray-650 dark:text-white duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-black-01 peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
               ><i class="fa-solid fa-envelope-circle-check me-1"></i>
-              Email</label
+              {{ "login.email.label" | translate }}</label
             >
           </div>
           @let emailControl=loginForm.controls['email'];
@@ -54,14 +56,14 @@
             <div>
               <ul>
                 @if(emailControl.hasError('required')){
-                <li>Email is required. Please enter your email address.</li>
+                <li>{{ "login.email.error.required" | translate }}</li>
 
                 }
               </ul>
             </div>
           </div>
           }
-          <div class="relative w-11/12 mx-auto mt-4">
+          <div class="relative w-full md:w-11/12 mx-auto mt-4">
             <div
               class="absolute flex items-center text-[18px] inset-y-0 end-2 cursor-pointer"
               (click)="togglePasswordVisibility()"
@@ -85,7 +87,8 @@
             <label
               for="pass"
               class="absolute text-sm text-gray-650 dark:text-white duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-black-01 peer-focus:dark:text-white peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto"
-              ><i class="fa-solid fa-lock me-1"></i> Password</label
+              ><i class="fa-solid fa-lock me-1"></i>
+              {{ "login.password.label" | translate }}</label
             >
           </div>
           @let passControl=loginForm.controls['password'];
@@ -109,7 +112,7 @@
             <div>
               <ul>
                 @if(passControl.hasError('required')){
-                <li>Password is required. Please enter your password.</li>
+                <li>{{ "login.password.error.required" | translate }}</li>
 
                 }
               </ul>
@@ -119,7 +122,7 @@
 
           <button
             type="submit"
-            class="block mx-auto mt-8 w-11/12 text-black-01 disabled:bg-primary-400 bg-primary-400 hover:bg-primary-500 transition-all duration-300 font-medium px-5 py-2.5"
+            class="block mx-auto mt-8 w-full md:w-11/12 text-black-01 disabled:bg-primary-400 bg-primary-400 hover:bg-primary-500 transition-all duration-300 font-medium px-5 py-2.5"
             [disabled]="isLoading()"
           >
             @if (isLoading()) {
@@ -139,14 +142,14 @@
                 fill="currentFill"
               />
             </svg>
-            }@else { Login }
+            }@else { {{ "login.submitButton.text" | translate }} }
           </button>
         </form>
         <a
           href=""
           class="text-black-01 px-8 mt-4 dark:text-white"
           routerLink="/forgetPassword"
-          >Forget Password?</a
+          >{{ "login.forgetPassword" | translate }}</a
         >
       </div>
       <app-carousel></app-carousel>

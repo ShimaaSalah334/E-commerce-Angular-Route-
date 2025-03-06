@@ -7,9 +7,10 @@ import { ToastrService } from 'ngx-toastr';
 import { CartService } from '../../core/services/cart.service';
 import { SearchPipe } from '../../shared/pipes/search.pipe';
 import { WishListService } from '../../core/services/wish-list.service';
+import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-products',
-  imports: [RouterLink, CurrencyPipe, SearchPipe],
+  imports: [RouterLink, CurrencyPipe, SearchPipe, TranslatePipe],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })

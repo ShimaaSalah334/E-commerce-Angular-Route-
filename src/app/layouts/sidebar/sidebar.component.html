@@ -3,7 +3,7 @@
   data-drawer-toggle="logo-sidebar"
   aria-controls="logo-sidebar"
   type="button"
-  class="inline-flex items-center absolute -start-2 top-1 p-2 ps-0 pt-0 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+  class="inline-flex items-center absolute -start-2 top-1 p-2 ps-0 pt-0 ms-3 text-sm text-gray-500 rounded-lg sm:hidden focus:outline-none dark:text-gray-400"
 >
   <span class="sr-only">Open sidebar</span>
   <svg
@@ -30,7 +30,7 @@
       <img src="images/shopify.png" class="h-14 me-3" alt="Flowbite Logo" />
       <span
         class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
-        >Shopify.</span
+        >Shopify</span
       >
     </a>
     <ul class="space-y-2 font-medium">
@@ -43,7 +43,9 @@
           <i
             class="fa-solid fa-house text-[18px] transition-all duration-300"
           ></i>
-          <span class="ms-3 transition-all duration-300">Home</span>
+          <span class="ms-3 transition-all duration-300">{{
+            "sidebar.menu.home" | translate
+          }}</span>
         </a>
       </li>
       <li>
@@ -55,7 +57,9 @@
           <i
             class="fa-solid fa-box text-[18px] transition-all duration-300"
           ></i>
-          <span class="ms-3 transition-all duration-300">Products</span>
+          <span class="ms-3 transition-all duration-300">{{
+            "sidebar.menu.products" | translate
+          }}</span>
         </a>
       </li>
       <li>
@@ -74,7 +78,9 @@
               d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"
             />
           </svg>
-          <span class="ms-3 transition-all duration-300">Categories</span>
+          <span class="ms-3 transition-all duration-300">{{
+            "sidebar.menu.categories" | translate
+          }}</span>
         </a>
       </li>
       <li>
@@ -86,7 +92,9 @@
           <i
             class="fa-solid fa-tag text-[18px] transition-all duration-300"
           ></i>
-          <span class="ms-3 transition-all duration-300">Brands</span>
+          <span class="ms-3 transition-all duration-300">{{
+            "sidebar.menu.brands" | translate
+          }}</span>
         </a>
       </li>
       <li>
@@ -98,7 +106,9 @@
           <i
             class="fa-solid fa-heart text-[18px] transition-all duration-300"
           ></i>
-          <span class="ms-3 transition-all duration-300">Wish-List</span>
+          <span class="ms-3 transition-all duration-300">{{
+            "sidebar.menu.wishList" | translate
+          }}</span>
         </a>
       </li>
       <!---Contact Collapse--->
@@ -119,7 +129,7 @@
                 ><i
                   class="fa-solid fa-headset me-3 text-[18px] transition-all duration-300"
                 ></i>
-                Contact</span
+                {{ "sidebar.menu.contact" | translate }}</span
               >
               <svg
                 data-accordion-icon
@@ -179,25 +189,24 @@
       </li>
     </ul>
     <div
-      class="sidebar-footer ps-8 text-gray-650 font-medium absolute bottom-4 dark:text-gray-350"
+      class="sidebar-footer ps-8 text-gray-650 font-medium absolute bottom-4 dark:text-gray-350 pointer-events-auto"
     >
-      <div class="setting mb-6">
+      <div
+        class="logout flex items-center mb-6 cursor-pointer"
+        (click)="logout()"
+      >
         <i
-          class="fa-solid fa-gear me-2 text-[18px] transition-all duration-300"
+          class="fa-solid fa-right-from-bracket ltr:rotate-180 rtl:rotate-0 me-2 text-xl transition-all duration-300 mt-1"
         ></i>
-        Setting
-      </div>
-      <div class="help flex items-center">
-        <i
-          class="fa-solid fa-question text-sm p-2 me-3 flex items-center justify-center w-5 h-5 rounded-full text-gray-30 bg-gray-650 dark:text-gray-350"
-        ></i>
-        <span>Help</span>
+        {{ "sidebar.menu.logout" | translate }}
       </div>
     </div>
   </div>
 </aside>
 
-<div class="py-4 px-3 sm:ml-64 ltr:sm:ml-64 rtl:sm:mr-64">
+<div
+  class="py-4 px-3 sm:ml-64 ltr:sm:ml-64 ltr:sm:mr-0 rtl:sm:mr-64 rtl:sm:ml-0"
+>
   <app-navbar [isLogin]="true"></app-navbar>
   <router-outlet></router-outlet>
 </div>

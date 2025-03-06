@@ -21,4 +21,8 @@ export class OrdersService {
     },
     )
   }
+
+  getUserOrders(id: string): Observable<any> {
+    return this.httpClient.get(`${this.baseUrl}/api/v1/orders/user/${id}`)
+  }
 }

@@ -10,10 +10,11 @@ import { CartService } from '../../core/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { SearchPipe } from '../../shared/pipes/search.pipe';
 import { WishListService } from '../../core/services/wish-list.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
-  imports: [CarouselModule, RouterLink, RouterLinkActive, CurrencyPipe, SearchPipe],
+  imports: [CarouselModule, RouterLink, RouterLinkActive, CurrencyPipe, SearchPipe, TranslatePipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -63,6 +64,7 @@ export class HomeComponent implements OnInit {
     this.displayProducts();
     this.displayCategories();
     this.wishList.fetchWishList()
+    this.displayProductsByCat()
   }
 
   displayProducts() {
@@ -95,7 +97,10 @@ export class HomeComponent implements OnInit {
       if (categoryName) {
         this.categories
           .getSpecificCategory(categoryName)
-          .subscribe((res) => { });
+          .subscribe((res) => {
+            console.log(res);
+
+          });
       }
     });
   }

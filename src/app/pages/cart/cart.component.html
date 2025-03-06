@@ -113,19 +113,23 @@
     <div
       class="empty-cart flex flex-col justify-center items-center text-center"
     >
-      <img src="/images/empty-cart.png" class="w-[30%]" alt="" />
-      <h2 class="text-black-01 font-semibold text-2xl mb-2 dark:text-white">
-        Your cart is empty!
+      <img src="/images/empty-cart.png" class="w-[30%] mb-3" alt="" />
+      <h2
+        class="text-black-01 font-semibold text-xl md:text-2xl mb-3 dark:text-white"
+      >
+        {{ "emptyCart.title" | translate }}
       </h2>
-      <p class="text-gray-450 text-xl w-1/2 dark:text-gray-400">
-        Looks like you have not added anything to your cart. Go ahead & explore
-        top categories
+      <p
+        class="text-gray-450 text-16px md:text-xl w-full lmd:w-3/4 xl:w-1/2 dark:text-gray-400"
+      >
+        {{ "emptyCart.description" | translate }}
       </p>
       <a
         routerLink="/home"
-        class="block w-1/2 mx-auto mt-12 text-black-01 bg-primary-400 hover:bg-primary-500 transition-all duration-300 font-medium px-5 py-2.5 shadow-primary-500 shadow-md"
+        class="block w-full ssm:w-3/4 smd:w-[60%] mmd:w-3/4 lmd:w-1/2 mx-auto mt-12 text-black-01 bg-primary-400 hover:bg-primary-500 transition-all duration-300 font-medium px-5 py-2.5 shadow-primary-500 shadow-md"
       >
-        <i class="fa-solid fa-arrow-left me-2"></i> Shop our products
+        <i class="fa-solid fa-arrow-left me-2"></i>
+        {{ "emptyCart.shopButton" | translate }}
       </a>
     </div>
     }

@@ -6,10 +6,11 @@ import { CartService } from '../../core/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { ProductsService } from '../../core/services/products.service';
 import { SearchPipe } from '../../shared/pipes/search.pipe';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-wish-list',
-  imports: [RouterLink, CurrencyPipe, SearchPipe],
+  imports: [RouterLink, CurrencyPipe, SearchPipe, TranslatePipe],
   templateUrl: './wish-list.component.html',
   styleUrl: './wish-list.component.scss'
 })

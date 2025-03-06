@@ -1,1 +1,94 @@
-<p>all-orders works!</p>
+<section class="user-orders">
+  <div class="container mx-auto">
+    <h2 class="text-black-01 font-bold text-xl py-10 dark:text-white">
+      Your Orders
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 xl:gap-6">
+      @for (order of ordersList(); track $index) {
+      <div
+        class="order-card bg-white shadow-gray-450 shadow-md px-3 py-4 rounded-xl dark:bg-black-03 dark:shadow-gray-950"
+        [class.order-first]="order.cartItems.length == 1"
+        [class.order-1]="order.cartItems.length == 2"
+        [class.order-4]="order.cartItems.length == 3"
+        [class.order-last]="order.cartItems.length >= 4"
+      >
+        <div
+          class="flex items-center justify-between w-full text-black-01 mb-4 dark:text-white"
+        >
+          <div class="date">
+            <p class="text-gray-500 font-semibold">
+              {{ order.createdAt | date : "short" }}
+            </p>
+          </div>
+          <div class="id">
+            <p class="text-gray-500 font-semibold">#{{ order.id }}</p>
+          </div>
+        </div>
+        @for (product of order.cartItems; track $index) {
+        <div class="flex items-center justify-between mb-4">
+          <div class="order-img w-2/12 rounded-xl">
+            <img [src]="product.product.imageCover" alt="" />
+          </div>
+          <div class="count">
+            <p class="text-gray-500 font-semibold">
+              {{ product.count }} @if(product.count == 1){ item} @else { items}
+            </p>
+          </div>
+        </div>
+        <div
+          class="flex items-center justify-between w-full text-black-01 mb-4 dark:text-white"
+        >
+          <p class="brand font-semibold">
+            {{ product.product.brand.name }}
+          </p>
+          <p class="price dark:text-gray-450">
+            {{ product.price | currency : "EGP " }}
+          </p>
+        </div>
+        }
+        <div
+          class="Tax-price flex items-center justify-between font-semibold mb-3"
+        >
+          <p class="text-black-01 dark:text-white">Tax Price</p>
+          <p class="text-gray-650 dark:text-gray-450">
+            {{ order.taxPrice | currency : "EGP " }}
+          </p>
+        </div>
+        <div
+          class="shipping-price flex items-center justify-between font-semibold mb-3"
+        >
+          <p class="text-black-01 dark:text-white">Shipping Price</p>
+          <p class="text-gray-650 dark:text-gray-450">
+            {{ order.shippingPrice | currency : "EGP " }}
+          </p>
+        </div>
+        <div class="total flex items-center justify-between font-bold">
+          <p class="text-black-01 dark:text-white">Total</p>
+          <p class="text-gray-650 dark:text-gray-450">
+            {{ order.totalOrderPrice | currency : "EGP " }}
+          </p>
+        </div>
+        <div
+          class="line w-3/4 h-0.5 bg-gray-300 mx-auto my-5 dark:bg-gray-650"
+        ></div>
+        <div
+          class="pay-method flex items-center justify-between font-bold mb-3"
+        >
+          <p class="text-black-01 dark:text-white">Payment Method</p>
+          <p class="text-gray-650 dark:text-gray-450">
+            {{ order.paymentMethodType }}
+          </p>
+        </div>
+        <div
+          class="Shipping-Address flex items-center justify-between font-bold"
+        >
+          <p class="text-black-01 dark:text-white">Shipping Address</p>
+          <p class="text-gray-650 dark:text-gray-450">
+            {{ order.shippingAddress.city }}
+          </p>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>

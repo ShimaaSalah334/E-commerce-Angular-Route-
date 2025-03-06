@@ -9,9 +9,10 @@ import {
 import { AuthService } from '../../core/services/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { CarouselComponent } from "../../shared/components/ui/carousel/carousel.component";
+import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, RouterLink, CarouselComponent],
+  imports: [ReactiveFormsModule, RouterLink, CarouselComponent, TranslatePipe],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

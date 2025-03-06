@@ -9,9 +9,10 @@ import {
 import { CarouselComponent } from "../../shared/components/ui/carousel/carousel.component";
 import { AuthService } from '../../core/services/auth.service';
 import { Router, RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-forget-password',
-  imports: [ReactiveFormsModule, CarouselComponent, RouterLink],
+  imports: [ReactiveFormsModule, CarouselComponent, RouterLink, TranslatePipe],
   templateUrl: './forget-password.component.html',
   styleUrl: './forget-password.component.scss'
 })

@@ -22,6 +22,7 @@ export class ProductsService {
       `${this.baseUrl}/api/v1/products/${productId}`
     );
   }
+
   setSearchTerm(term: string): void {
     this.searchTerm.set(term);
   }

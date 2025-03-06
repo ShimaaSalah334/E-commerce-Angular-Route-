@@ -6,10 +6,11 @@ import { CartService } from '../../core/services/cart.service';
 import { FormsModule } from '@angular/forms';
 import { isPlatformBrowser } from '@angular/common';
 import { MyTranslateService } from '../../core/services/my-translate.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink, RouterLinkActive, FormsModule],
+  imports: [RouterLink, RouterLinkActive, FormsModule, TranslatePipe],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
@@ -37,12 +38,17 @@ export class NavbarComponent implements OnInit {
     } else {
       console.log('User is not logged in. Skipping cart fetch.');
     }
+    if (!this.isLogin()) {
+      document.body.classList.add('bg-gray-250'); // Default background
+
+    } else {
+      document.body.classList.remove('bg-gray-250'); // Default background
+
+    }
     this.changeTheme(this.theme)
   }
 
-  logout() {
-    this.auth.logout();
-  }
+
 
   onSearch() {
     this.products.setSearchTerm(this.searchTerm())
@@ -75,5 +81,9 @@ export class NavbarComponent implements OnInit {
         delete localStorage['theme'];
         break;
     }
+  }
+  changeLang() {
+    const lang = localStorage.getItem('lang') == 'en' ? 'ar' : 'en';
+    this.translate.changeLang(lang);
   }
 }
