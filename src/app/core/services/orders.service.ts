@@ -8,7 +8,6 @@ import { Observable } from 'rxjs';
 })
 export class OrdersService {
   baseUrl: string = environment.baseUrl;
-  redirectUrl: string = environment.redirectUrl;
 
   constructor(private httpClient: HttpClient) { }
   onlinePayment(cartId: string, formData: any): Observable<any> {
