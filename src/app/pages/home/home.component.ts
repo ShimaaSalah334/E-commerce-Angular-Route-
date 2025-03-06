@@ -14,7 +14,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
-  imports: [CarouselModule, RouterLink, RouterLinkActive, CurrencyPipe, SearchPipe, TranslatePipe],
+  imports: [CarouselModule, RouterLink, CurrencyPipe, SearchPipe, TranslatePipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -64,7 +64,7 @@ export class HomeComponent implements OnInit {
     this.displayProducts();
     this.displayCategories();
     this.wishList.fetchWishList()
-    this.displayProductsByCat()
+
   }
 
   displayProducts() {
@@ -90,20 +90,7 @@ export class HomeComponent implements OnInit {
       },
     });
   }
-  displayProductsByCat() {
-    this.activatedRoute.paramMap.subscribe((params) => {
-      console.log(params.get('catname'));
-      const categoryName = params.get('catname');
-      if (categoryName) {
-        this.categories
-          .getSpecificCategory(categoryName)
-          .subscribe((res) => {
-            console.log(res);
 
-          });
-      }
-    });
-  }
 
   addToCart(id: string) {
     this.cart.addToCart(id).subscribe({

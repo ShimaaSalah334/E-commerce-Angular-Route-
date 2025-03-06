@@ -1,20 +1,8 @@
 <section class="cat-slider pt-4 pb-3 px-2">
   <owl-carousel-o [options]="customOptions">
-    <ng-template carouselSlide>
-      <a
-        routerLink="/cat/all"
-        routerLinkActive="bg-gray-850 text-white "
-        class="text-sm text-gray-650 bg-gray-150 px-3 py-2 rounded-full hover:bg-gray-850 hover:text-white transition-all duration-300 dark:bg-black-04 dark:text-gray-450 dark:hover:bg-gray-150 dark:hover:text-gray-850"
-      >
-        All
-      </a>
-    </ng-template>
-
     @for (category of categoriesList(); track $index) {
     <ng-template carouselSlide>
       <a
-        [routerLink]="['/cat', category._id]"
-        routerLinkActive="bg-gray-850 text-white"
         class="text-sm text-gray-650 bg-gray-150 px-3 py-2 rounded-full hover:bg-gray-850 hover:text-white transition-all duration-300 dark:bg-black-04 dark:text-gray-450 dark:hover:bg-gray-150 dark:hover:text-gray-850"
         >{{ category.name }}</a
       >
