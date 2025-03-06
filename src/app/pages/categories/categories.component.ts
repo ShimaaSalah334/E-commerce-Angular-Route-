@@ -1,10 +1,11 @@
 import { CategoriesService } from './../../core/services/categories.service';
 import { Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { ICategory } from '../../core/interfaces/icategory';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-categories',
-  imports: [],
+  imports: [TranslatePipe],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss'
 })

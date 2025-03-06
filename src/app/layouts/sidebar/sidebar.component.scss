@@ -9,23 +9,14 @@
 
 .active {
   &::before {
-    content: "";
-    position: absolute;
-    left: 0px;
-    top: 50%;
-    transform: translateY(-50%);
     border-style: solid;
     border-width: 20px 0px 20px 10px;
     border-color: transparent transparent transparent #ffc831;
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
   }
 }
 
 .text-gray-900 {
-  color: #212b36;
+  color: #919eab;
   i {
     color: #ffc831;
   }
@@ -34,17 +25,8 @@
 #accordion-open-heading-1 .bg-gray-100 {
   background-color: transparent;
   &::before {
-    content: "";
-    position: absolute;
-    left: 0px;
-    top: 50%;
-    transform: translateY(-50%);
     border-style: solid;
     border-width: 20px 0px 20px 10px;
     border-color: transparent transparent transparent #ffc831;
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
   }
 }

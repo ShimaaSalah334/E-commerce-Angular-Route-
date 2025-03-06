@@ -170,6 +170,56 @@
             "description": "يبدو أنك لم تقم بإضافة أي شيء إلى سلة التسوق الخاصة بك. تقدم واستكشف الفئات الرئيسية.",
             "shopButton": "تسوق منتجاتنا"
           }
+          ,
 
+              "popular_categories": "الفئات الشائعة"
+          ,
+            "popular_products": "المنتجات الشائعة"
+          ,
+            "top_rated_products": "!أفضل المنتجات التي تناسب كل أنماط الحياة – تسوق الأفضل في التكنولوجيا، والأزياء والمزيد"
+,
+  "explore_categories": "اكتشف فئاتنا – اعثر على ما تحب!"
+,
+  "favorite_brands": "علاماتك التجارية المفضلة، كلها في مكان واحد!"
+,
+  "wishlist_message": "قائمة أمنياتك – احفظ مفضلاتك لوقت لاحق!"
+,
+  "shopping_cart": "عربة التسوق",
+  "items": "عناصر",
+  "item": "عنصر",
+  "pay_now": "ادفع الآن",
+  "clear_cart": "إفراغ العربة"
 
+,"checkout":{
+  "title": "الدفع",
+  "phone": "الهاتف",
+  "city": "المدينة",
+  "details": "تفاصيل",
+  "your_order": "طلبك",
+  "total": "الإجمالي",
+  "pay_cash": "الدفع نقداً",
+  "or": "أو",
+  "pay_online": "الدفع عبر الإنترنت",
+  "thank_you_message": "شكراً لتسوقك معنا",
+  "tax": "الضريبة",
+  "shipping": "الشحن",
+  "payment_method": "طريقة الدفع",
+  "shipping_address": "عنوان الشحن",
+  "view_all_orders": "عرض جميع الطلبات",
+  "phone_required": "الهاتف مطلوب.",
+  "city_required": "المدينة مطلوبة.",
+  "details_required": "التفاصيل مطلوبة."
+},
+"allorders":{
+
+    "your_orders": "طلباتك",
+    "item": "عنصر",
+    "items": "عناصر",
+    "tax_price": "سعر الضريبة",
+    "shipping_price": "سعر الشحن",
+    "total": "الإجمالي",
+    "payment_method": "طريقة الدفع",
+    "shipping_address": "عنوان الشحن"
+
+}
 }

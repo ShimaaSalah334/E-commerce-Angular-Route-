@@ -10,7 +10,8 @@ import { CartService } from '../../core/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { SearchPipe } from '../../shared/pipes/search.pipe';
 import { WishListService } from '../../core/services/wish-list.service';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { MyTranslateService } from '../../core/services/my-translate.service';
 
 @Component({
   selector: 'app-home',
@@ -23,41 +24,51 @@ export class HomeComponent implements OnInit {
   categoriesList: WritableSignal<ICategory[]> = signal([]);
   searchTerm = computed(() => this.products.searchTerm())
 
-  customOptions: OwlOptions = {
-    loop: false,
-    mouseDrag: false,
-    touchDrag: false,
-    pullDrag: false,
-    dots: false,
-    autoWidth: false,
-    navSpeed: 700,
-    navText: [
-      '<i class="fa-solid fa-angle-left owel-nav-icon" ></i>',
-      '<i class="fa-solid fa-angle-right owel-nav-icon"></i>',
-    ],
-    responsive: {
-      0: {
-        items: 2,
+  customOptions = computed<OwlOptions>(() => {
+    const isRTL = this.translateService.currentLang() === 'ar';
+    return {
+      loop: false,
+      mouseDrag: false,
+      touchDrag: false,
+      pullDrag: false,
+      dots: false,
+      autoWidth: false,
+      navSpeed: 700,
+      navText: isRTL
+        ? [
+          '<i class="fa-solid fa-angle-right owel-nav-icon"></i>', // Right arrow for RTL
+          '<i class="fa-solid fa-angle-left owel-nav-icon"></i>', // Left arrow for RTL
+        ]
+        : [
+          '<i class="fa-solid fa-angle-left owel-nav-icon"></i>', // Left arrow for LTR
+          '<i class="fa-solid fa-angle-right owel-nav-icon"></i>', // Right arrow for LTR
+        ],
+      responsive: {
+        0: {
+          items: 2,
+        },
+        400: {
+          items: 4,
+        },
+        740: {
+          items: 5,
+        },
+        940: {
+          items: 7,
+        },
       },
-      400: {
-        items: 4,
-      },
-      740: {
-        items: 5,
-      },
-      940: {
-        items: 7,
-      },
-    },
-    nav: true,
-  };
+      nav: true,
+      rtl: isRTL,
+    };
+  });
   constructor(
     private products: ProductsService,
     private categories: CategoriesService,
     private cart: CartService,
     private wishList: WishListService,
     private activatedRoute: ActivatedRoute,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private translateService: MyTranslateService
   ) { }
 
   ngOnInit(): void {
@@ -115,5 +126,18 @@ export class HomeComponent implements OnInit {
   }
   showSuccess(message: string) {
     this.toastr.success(message, 'Shopify');
+  }
+  displayedProductsCount: number = 15;
+
+  // Maximum number of products to display
+  maxDisplayedProducts: number = 20;
+
+  // Method to load more products
+  loadMore() {
+    const remainingProducts = this.maxDisplayedProducts - this.displayedProductsCount;
+    if (remainingProducts > 0) {
+      // Increase the count by the remaining products or a fixed number (e.g., 5)
+      this.displayedProductsCount += Math.min(5, remainingProducts); // Load 5 more or until max is reached
+    }
   }
 }

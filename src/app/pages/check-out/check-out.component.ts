@@ -8,10 +8,11 @@ import { OrdersService } from '../../core/services/orders.service';
 import { ICash } from '../../core/interfaces/icash';
 import { AuthService } from '../../core/services/auth.service';
 import { IUser } from '../../core/interfaces/iuser';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-check-out',
-  imports: [ReactiveFormsModule, CurrencyPipe, RouterLink],
+  imports: [ReactiveFormsModule, CurrencyPipe, RouterLink, TranslatePipe],
   templateUrl: './check-out.component.html',
   styleUrl: './check-out.component.scss'
 })

@@ -9,8 +9,8 @@
         alt=""
         #coverImage
       />
-      <div class="images-slider mt-8">
-        <owl-carousel-o [options]="customOptions">
+      <div class="images-slider mt-8 px-4">
+        <owl-carousel-o [options]="customOptions()">
           @for (image of productData.images; track $index) {
           <ng-template carouselSlide>
             <img
@@ -61,11 +61,19 @@
           class="flex items-center justify-center flex-wrap gap-5 xssm:justify-between"
         >
           <div class="flex items-center space-x-2">
-            <button class="bg-primary-500 text-black-01 h-7 px-2 text-[18px]">
+            <button
+              class="bg-primary-500 text-black-01 h-7 px-2 text-[18px]"
+              (click)="increaseQuantity()"
+            >
               <i class="fa-solid fa-plus mt-1.5"></i>
             </button>
-            <p class="to-black-01 text-[18px] dark:text-white">0</p>
-            <button class="bg-primary-500 text-black-01 h-7 px-2 text-[18px]">
+            <p class="to-black-01 text-[18px] dark:text-white">
+              {{ quantity() }}
+            </p>
+            <button
+              class="bg-primary-500 text-black-01 h-7 px-2 text-[18px]"
+              (click)="decreaseQuantity()"
+            >
               <i class="fa-solid fa-minus mt-1.5"></i>
             </button>
           </div>
@@ -88,7 +96,7 @@
     <h2 class="text-black-01 font-semibold text-2xl py-14 dark:text-white">
       You May Also Like
     </h2>
-    <owl-carousel-o [options]="customOptions2">
+    <owl-carousel-o [options]="customOptions2()">
       @for (product of relatedProducts(); track $index) {
       <ng-container>
         <ng-template carouselSlide>

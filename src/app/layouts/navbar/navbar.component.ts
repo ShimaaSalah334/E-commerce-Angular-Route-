@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { isPlatformBrowser } from '@angular/common';
 import { MyTranslateService } from '../../core/services/my-translate.service';
 import { TranslatePipe } from '@ngx-translate/core';
+import { IUser } from '../../core/interfaces/iuser';
 
 @Component({
   selector: 'app-navbar',
@@ -20,6 +21,8 @@ export class NavbarComponent implements OnInit {
   numberOfCartItems = computed(() => this.cart.cartItems())
   isDarkMode: WritableSignal<boolean> = signal(false);
   theme: string = 'light';
+  userData: IUser = {} as IUser;
+
   constructor(private auth: AuthService, private cart: CartService, private products: ProductsService, private translate: MyTranslateService, @Inject(PLATFORM_ID) private _PLATFORM_ID: object) { }
   ngOnInit(): void {
     if (isPlatformBrowser(this._PLATFORM_ID)) {
@@ -46,6 +49,8 @@ export class NavbarComponent implements OnInit {
 
     }
     this.changeTheme(this.theme)
+    this.auth.decodeToken()
+    this.userData = this.auth.userData
   }
 
 

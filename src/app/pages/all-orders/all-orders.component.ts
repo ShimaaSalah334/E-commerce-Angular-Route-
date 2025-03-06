@@ -4,10 +4,11 @@ import { OrdersService } from '../../core/services/orders.service';
 import { AuthService } from '../../core/services/auth.service';
 import { IUserOrders } from '../../core/interfaces/iuser-orders';
 import { CurrencyPipe, DatePipe } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-all-orders',
-  imports: [DatePipe, CurrencyPipe],
+  imports: [DatePipe, CurrencyPipe, TranslatePipe],
   templateUrl: './all-orders.component.html',
   styleUrl: './all-orders.component.scss'
 })

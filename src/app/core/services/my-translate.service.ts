@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Inject, inject, Injectable, PLATFORM_ID, Renderer2, RendererFactory2 } from '@angular/core';
+import { Inject, inject, Injectable, PLATFORM_ID, Renderer2, RendererFactory2, signal, WritableSignal } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core'
 
 @Injectable({
@@ -7,12 +7,15 @@ import { TranslateService } from '@ngx-translate/core'
 })
 export class MyTranslateService {
   private render2 = inject(RendererFactory2).createRenderer(null, null)
+  currentLang: WritableSignal<string> = signal<string>(localStorage.getItem('lang') || 'en'); // Signal to track current language
   constructor(private translate: TranslateService, @Inject(PLATFORM_ID) private platId: object) {
     if (isPlatformBrowser(this.platId)) {
       this.translate.setDefaultLang('en')
       const language = localStorage.getItem('lang')
       if (language) {
         this.translate.use(language)
+        this.currentLang.set(language);
+
       }
     }
     this.changeDirection
@@ -34,6 +37,7 @@ export class MyTranslateService {
     }
 
     this.translate.use(lang);
+    this.currentLang.set(lang);
     this.changeDirection();
   }
 }

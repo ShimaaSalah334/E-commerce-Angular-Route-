@@ -150,7 +150,8 @@
           "loading": "Loading..."
         }
       }
-    },
+    }
+    ,
       "notFound": {
         "title": "No Results Found",
         "description": "We couldn't find any products matching"
@@ -166,8 +167,59 @@
           "title": "Your cart is empty!",
           "description": "Looks like you have not added anything to your cart. Go ahead & explore top categories.",
           "shopButton": "Shop our products"
-        }
+        },
+"popular_categories": "Popular categories",
 
+  "popular_products": "Popular Products"
+
+,
+  "top_rated_products": "Top-Rated Products for Every Lifestyle – Shop the Best in Tech, Fashion & More!"
+,
+  "explore_categories": "Explore Our Categories – Find What You Love!"
+,
+  "favorite_brands": "Your Favorite Brands, All in One Place!"
+
+,
+  "wishlist_message": "Your Wishlist – Save Your Favorites for Later!"
+  ,
+    "shopping_cart": "Shopping Cart",
+    "items": "items",
+    "item": "item",
+    "pay_now": "Pay Now",
+    "clear_cart": "Clear Cart",
+   "checkout": {
+      "title": "Checkout",
+      "phone": "Phone",
+      "city": "City",
+      "details": "Details",
+      "phone_required": "Phone is required.",
+      "city_required": "City is required.",
+      "details_required": "Details is required.",
+      "your_order": "Your Order",
+      "total": "Total",
+      "pay_cash": "Pay Cash",
+      "or": "Or",
+      "pay_online": "Pay Online",
+      "thank_you_message": "Thank you for shopping with us",
+      "tax": "Tax",
+      "shipping": "Shipping",
+      "payment_method": "Payment Method",
+      "shipping_address": "Shipping Address",
+      "view_all_orders": "View All Orders"
+
+    }
+    ,
+    "allorders":{
+        "your_orders": "Your Orders",
+        "item": "item",
+        "items": "items",
+        "tax_price": "Tax Price",
+        "shipping_price": "Shipping Price",
+        "total": "Total",
+        "payment_method": "Payment Method",
+        "shipping_address": "Shipping Address"
+
+    }
 
 
 }
