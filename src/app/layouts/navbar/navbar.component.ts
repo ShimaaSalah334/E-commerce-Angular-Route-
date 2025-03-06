@@ -22,6 +22,7 @@ export class NavbarComponent implements OnInit {
   isDarkMode: WritableSignal<boolean> = signal(false);
   theme: string = 'light';
   userData: IUser = {} as IUser;
+  lang: string = 'en'; // Default language
 
   constructor(private auth: AuthService, private cart: CartService, private products: ProductsService, private translate: MyTranslateService, @Inject(PLATFORM_ID) private _PLATFORM_ID: object) { }
   ngOnInit(): void {
@@ -87,7 +88,6 @@ export class NavbarComponent implements OnInit {
         break;
     }
   }
-  lang: string = 'en'; // Default language
 
   changeLang() {
     this.lang = localStorage.getItem('lang') == 'en' ? 'ar' : 'en';
