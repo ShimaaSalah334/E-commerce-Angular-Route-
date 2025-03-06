@@ -12,7 +12,7 @@ export class OrdersService {
 
   constructor(private httpClient: HttpClient) { }
   onlinePayment(cartId: string, formData: any): Observable<any> {
-    return this.httpClient.post(`${this.baseUrl}/api/v1/orders/checkout-session/${cartId}?url=${this.redirectUrl}`, {
+    return this.httpClient.post(`${this.baseUrl}/api/v1/orders/checkout-session/${cartId}?url=http://localhost:4200`, {
       "shippingAddress": formData
     },
     )

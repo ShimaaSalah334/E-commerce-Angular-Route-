@@ -17,7 +17,6 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class ProductsComponent {
   productsList: WritableSignal<IProduct[]> = signal([]);
   searchTerm = computed(() => this.products.searchTerm())
-  quantity = signal(1); // Signal to track the quantity
 
   constructor(
     private products: ProductsService,
@@ -31,16 +30,6 @@ export class ProductsComponent {
     this.wishList.fetchWishList()
 
 
-  }
-  increaseQuantity() {
-    this.quantity.update((qty) => qty + 1);
-  }
-
-  // Method to decrease quantity
-  decreaseQuantity() {
-    if (this.quantity() > 1) {
-      this.quantity.update((qty) => qty - 1);
-    }
   }
 
   displayProducts() {

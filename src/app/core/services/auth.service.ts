@@ -23,9 +23,20 @@ export class AuthService {
     this.userData = null
   }
   decodeToken() {
-    const token = localStorage.getItem('userToken') as string;
-    this.userData = jwtDecode(token);
+    const token = localStorage.getItem('userToken');
+    if (token) {
+      try {
+        this.userData = jwtDecode(token);
+      } catch (error) {
+        console.error("Error decoding token:", error);
+        this.userData = null;
+      }
+    } else {
+      console.warn("No token found in local storage");
+      this.userData = null;
+    }
   }
+
   forgetPassword(data: any): Observable<any> {
     return this.httpClient.post(`${this.baseUrl}/api/v1/auth/forgotPasswords`, data)
   }
