@@ -15,5 +15,9 @@ export class SidebarComponent {
   logout() {
     this.auth.logout();
   }
+  isSidebarOpen = false;
 
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
 }
